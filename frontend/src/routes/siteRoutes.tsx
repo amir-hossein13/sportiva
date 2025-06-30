@@ -1,13 +1,13 @@
 import { RouteObject } from "react-router-dom";
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import Basket from "../pages/Basket";
-import AdminPanel from "../pages/AdminPanel";
-import UserPanel from "../pages/UserPanel";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
+import Home from "../pages/site/Home";
+import Product from "../pages/site/Product";
+import Basket from "../pages/site/Basket";
+import AdminPanel from "../pages/panel/AdminPanel";
+import UserPanel from "../pages/panel/UserPanel";
+import Register from "../pages/site/Register";
+import Login from "../pages/site/Login";
 
-const siteRoutes: RouteObject[] = [
+export const siteRoutes: RouteObject[] = [
   { path: "/", element: <Home /> },
 
   { path: "products", element: <Product /> },
