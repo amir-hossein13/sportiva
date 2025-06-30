@@ -4,10 +4,9 @@ import Product from "../pages/site/Product";
 import Basket from "../pages/site/Basket";
 import AdminPanel from "../pages/panel/AdminPanel";
 import UserPanel from "../pages/panel/UserPanel";
-import Register from "../pages/site/Register";
-import Login from "../pages/site/Login";
 
-export const siteRoutes: RouteObject[] = [
+
+ const siteRoutes: RouteObject[] = [
   { path: "/", element: <Home /> },
 
   { path: "products", element: <Product /> },
@@ -18,6 +17,6 @@ export const siteRoutes: RouteObject[] = [
   { path: "admin", element: <AdminPanel /> },
   { path: "user", element: <UserPanel /> },
 
-  { path: "register", element: <Register /> },
-  { path: "login", element: <Login /> },
+
 ];
+export default siteRoutes;

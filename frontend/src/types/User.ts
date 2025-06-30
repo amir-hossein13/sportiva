@@ -7,6 +7,14 @@ export interface RegisterData {
   role: number;
 }
 
-export interface AuthResponse{
-    token:string;
+export interface AuthResponse {
+  token: string;
+}
+export interface LoginResponse {
+  token: string;
+  user: {
+    id: number;
+    email: string;
+    password: string;
+  };
 }
