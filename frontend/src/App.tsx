@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import routes from "./routes/routes";
-import { login, logout } from "./services/apiAuth";
+import { getProduct } from "./services/apiProduct";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -24,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={client}>
-        <button onClick={logout}>fetch</button>
+        <button onClick={getProduct}>fetch</button>
         <AppRoutes />
       </QueryClientProvider>
     </BrowserRouter>

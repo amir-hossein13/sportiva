@@ -1,13 +1,13 @@
 import { AuthResponse, LoginResponse } from "../types/User";
 import { removeToken, setToken } from "../utils/auth";
-
-export async function register() {
-  const res = await fetch("http://127.0.0.1:8000/api/register", {
+const apiUrl = import.meta.env.VITE_BASE_URL;
+export async function register(): Promise<AuthResponse> {
+  const res = await fetch(`${apiUrl}/api/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       username: "mohammad123",
-      email: "test3@example.com",
+      email: "test5@example.com",
       phone: "09123456789",
       password: "abc12345",
       address: "Tehran, Iran",
@@ -18,10 +18,11 @@ export async function register() {
   setToken(data.token);
   console.log("Token saved to cookie!");
   console.log(data);
+  return data
 }
 
-export async function login() {
-  const res = await fetch("http://127.0.0.1:8000/api/login", {
+export async function login(): Promise<LoginResponse >{
+  const res = await fetch(`${apiUrl}/api/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -35,9 +36,10 @@ export async function login() {
   }
   const data: LoginResponse = await res.json();
   console.log(data);
+  return data
 }
 
-export function logout(){
-  removeToken()
-  console.log('token deleted successfully');
+export function logout() {
+  removeToken();
+  console.log("token deleted successfully");
 }
