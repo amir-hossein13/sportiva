@@ -1,12 +1,12 @@
+import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
-import Home from "../pages/site/Home";
-import Product from "../pages/site/Product";
-import Basket from "../pages/site/Basket";
-import AdminPanel from "../pages/panel/AdminPanel";
-import UserPanel from "../pages/panel/UserPanel";
+const Home = lazy(() => import("../pages/site/Home"));
+const Product = lazy(() => import("../pages/site/Product"));
+const Basket = lazy(() => import("../pages/site/Basket"));
+const AdminPanel = lazy(() => import("../pages/panel/AdminPanel"));
+const UserPanel = lazy(() => import("../pages/panel/UserPanel"));
 
-
- const siteRoutes: RouteObject[] = [
+const siteRoutes: RouteObject[] = [
   { path: "/", element: <Home /> },
 
   { path: "products", element: <Product /> },
@@ -16,7 +16,5 @@ import UserPanel from "../pages/panel/UserPanel";
 
   { path: "admin", element: <AdminPanel /> },
   { path: "user", element: <UserPanel /> },
-
-
 ];
 export default siteRoutes;

@@ -1,9 +1,13 @@
+// dependencies
+import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
-import AppLayout from "../pages/site/AppLayout";
-import  siteRoutes  from "./siteRoutes";
-import NotFound from "../pages/site/NotFound";
-import Register from "../pages/site/Register";
-import Login from "../pages/site/Login";
+//pages
+const AppLayout = lazy(() => import("../pages/site/AppLayout"));
+const NotFound = lazy(() => import("../pages/site/NotFound"));
+const Register = lazy(() => import("../pages/site/Register"));
+const Login = lazy(() => import("../pages/site/Login"));
+//route
+import siteRoutes from "./siteRoutes";
 
 const routes: RouteObject[] = [
   { path: "/", element: <AppLayout />, children: siteRoutes },
