@@ -16,7 +16,7 @@ export async function getProductComments(
       errorData?.message || `Failed to fetch comments: ${res.status}`;
     throw new Error(message);
   }
-  const data = await res.json();
+  const data: CommentData = await res.json();
   return data;
 }
 
@@ -57,7 +57,7 @@ export async function addComments(
       errorData?.message || `Failed to fetch comments: ${res.status}`;
     throw new Error(message);
   }
-  const data = await res.json();
+  const data: CommentData = await res.json();
   return data;
 }
 
@@ -79,7 +79,7 @@ export async function editComments(
       errorData?.message || `Failed to fetch comments: ${res.status}`;
     throw new Error(message);
   }
-  const data = await res.json();
+  const data: CommentData = await res.json();
   return data;
 }
 
