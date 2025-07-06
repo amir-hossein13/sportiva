@@ -21,7 +21,7 @@ export async function register(): Promise<AuthResponse> {
   return data
 }
 
-export async function login(): Promise<LoginResponse >{
+export async function login(): Promise<LoginResponse> {
   const res = await fetch(`${apiUrl}/api/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -30,14 +30,19 @@ export async function login(): Promise<LoginResponse >{
       password: "abc12345",
     }),
   });
+
   if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.message || "Login failed");
+    const error = await res.json().catch(() => null);
+    throw new Error(error?.message || "Login failed");
   }
+
   const data: LoginResponse = await res.json();
+  setToken(data.token); 
   console.log(data);
-  return data
+  return data;
 }
+
+
 
 export function logout() {
   removeToken();
