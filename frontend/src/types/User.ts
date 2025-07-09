@@ -18,3 +18,4 @@ export interface LoginResponse {
     password: string;
   };
 }
+

@@ -1,105 +1,37 @@
+// api/commentApi.ts
+import { apiFetch } from "../utils/apiFetch";
 import { CommentData } from "../types/Comment";
-import Cookies from "js-cookie";
 
-const apiUrl = import.meta.env.VITE_BASE_URL;
-const token = Cookies.get("jwt_token");
-
-export async function getProductComments(
-  id: number
-): Promise<CommentData | { error: string }> {
-  const res = await fetch(`${apiUrl}/api/comments/${id}`, {
-    headers: { "Content-Type": "application/json" },
-  });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to fetch comments: ${res.status}`;
-    throw new Error(message);
-  }
-  const data: CommentData = await res.json();
-  return data;
+export function getProductComments(id: number): Promise<CommentData> {
+  return apiFetch<CommentData>(`/api/comments/${id}`);
 }
 
-export async function checkCommentOwner(id: number): Promise<any> {
-  const res = await fetch(`${apiUrl}/api/comments/check-owner`, {
+export function checkCommentOwner(): Promise<{ isOwner: boolean }> {
+  return apiFetch<{ isOwner: boolean }>(`/api/comments/check-owner`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-    body: JSON.stringify({ id }),
+    auth: true,
   });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to fetch comments: ${res.status}`;
-    throw new Error(message);
-  }
-  const data = await res.json();
-  return data;
 }
 
-export async function addComments(
-  id: number,
-  content: string
-): Promise<CommentData> {
-  const res = await fetch(`${apiUrl}/api/comments`, {
+export function addComments(content: string): Promise<CommentData> {
+  return apiFetch<CommentData>(`/api/comments`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-    body: JSON.stringify({ content }),
+    body: { content },
+    auth: true,
   });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to fetch comments: ${res.status}`;
-    throw new Error(message);
-  }
-  const data: CommentData = await res.json();
-  return data;
 }
 
-export async function editComments(
-  id: number,
-  content: string
-): Promise<CommentData> {
-  const res = await fetch(`${apiUrl}/api/comments`, {
+export function editComments(content: string): Promise<CommentData> {
+  return apiFetch<CommentData>(`/api/comments`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-    body: JSON.stringify({ id, content }),
+    body: { content },
+    auth: true,
   });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to fetch comments: ${res.status}`;
-    throw new Error(message);
-  }
-  const data: CommentData = await res.json();
-  return data;
 }
 
-export async function deleteComment(id: number): Promise<any> {
-
-  const res = await fetch(`${apiUrl}/api/comments/delete`, {
+export function deleteComment(): Promise<{ success: boolean }> {
+  return apiFetch<{ success: boolean }>(`/api/comments/delete`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-    body: JSON.stringify({ id }),
+    auth: true,
   });
-
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to delete comment: ${res.status}`;
-    throw new Error(message);
-  }
-  const data = await res.json();
-  return data;
 }

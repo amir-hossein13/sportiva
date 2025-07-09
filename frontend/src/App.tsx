@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { getProduct } from "./services/apiProduct";
+import { getAllProduct } from "./services/apiProduct";
 import routes from "./routes/routes";
 
 const client = new QueryClient({
@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={client}>
-        <button onClick={getProduct}>fetch</button>
+        <button onClick={getAllProduct}>fetch</button>
         <AppRoutes />
       </QueryClientProvider>
     </BrowserRouter>
