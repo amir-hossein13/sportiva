@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Vazirmatn:wght@100..900&display=swap');
+
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
@@ -8,6 +9,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 @theme {
     --font-farsi: 'Vazir', sans-serif;
     --color-darkbule: #00295f;
@@ -15,4 +17,48 @@
     --color-liteBule-300: #86B6F6;
     --color-liteBule-200: #B4D4FF;
     --color-liteBule-100: #EEF5FF;
+}
+
+/* .curve::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: #176b87;
+    transform: translate(85%, 60%);
+}
+
+.curve::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: white;
+    transform: translate(-4%, 40%);
+    z-index: -1;
+} */
+.custom-shape-divider-top-1752336564 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1752336564 svg {
+    position: relative;
+    display: block;
+    width: calc(145% + 1.3px);
+    height: 100%;
+    height: 209px;
+}
+
+.custom-shape-divider-top-1752336564 .shape-fill {
+    fill: #FFFFFF;
 }
