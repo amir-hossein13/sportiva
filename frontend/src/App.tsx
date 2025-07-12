@@ -23,7 +23,6 @@ function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={client}>
-        <button onClick={getAllProduct}>fetch</button>
         <AppRoutes />
       </QueryClientProvider>
     </BrowserRouter>
