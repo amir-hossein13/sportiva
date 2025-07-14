@@ -2,9 +2,9 @@ export interface RegisterData {
   username: string;
   email: string;
   phone: string;
-  password: string;
+  password: number;
   address: string;
-  role: number;
+  role?: number;
 }
 
 export interface AuthResponse {

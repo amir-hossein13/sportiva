@@ -7,7 +7,7 @@ type Method = "GET" | "POST" | "PUT" | "DELETE";
 
 interface ApiFetchOptions {
   method?: Method;
-  body?: any;
+  body?: unknown;
   auth?: boolean;
 }
 
@@ -38,6 +38,5 @@ export async function apiFetch<T>(
     throw new Error(message);
   }
   const data:T = await res.json()
-  // console.log(data);
   return data
 }

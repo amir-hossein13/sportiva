@@ -5,7 +5,6 @@ import { FaLinkedin, FaInstagram, FaTelegram } from 'react-icons/fa6';
 function Footer() {
   return (
     <>
-      {/* ✅ Curve above the footer */}
       <div className="w-full overflow-hidden leading-none">
         <svg
           className="h-20 w-full md:h-28 rotate-180"
@@ -24,10 +23,8 @@ function Footer() {
         </svg>
       </div>
 
-      {/* ✅ Actual footer starts here */}
       <footer className="bg-aqua relative h-auto">
         <div className="text-liteBule-100 text-bold font-farsi flex flex-col justify-around space-y-6 p-4 font-bold md:flex-row md:space-y-0 md:p-10">
-          {/* ... the rest of your footer content ... */}
 
           <div className="text-center md:text-left">
             <FooterTitle>راهنمای خرید</FooterTitle>

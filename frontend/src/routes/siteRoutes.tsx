@@ -9,8 +9,8 @@ const UserPanel = lazy(() => import("../pages/panel/UserPanel"));
 const siteRoutes: RouteObject[] = [
   { path: "/", element: <Home /> },
 
-  { path: "products", element: <Product /> },
-  { path: "products/:id", element: <Product /> },
+  { path: "product", element: <Product /> },
+  { path: "product/:id", element: <Product /> },
 
   { path: "basket", element: <Basket /> },
 

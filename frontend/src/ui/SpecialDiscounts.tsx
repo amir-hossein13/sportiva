@@ -1,6 +1,13 @@
+import { useProduct } from '../features/product/useProduct';
 import ProductItem from './ProductItem';
 
 function SpecialDiscounts() {
+  const {isLoading,products} = useProduct()
+  const productsWithDiscount = products.filter(
+    (product) => product.discount && product.discount > 0
+  );
+
+  console.log(products);
   return (
     <section className="my-5 px-4 sm:container sm:mx-auto">
       <div className="flex flex-col gap-6 rounded-4xl bg-gradient-to-br from-white via-[#B3CED8] to-[#166B87] p-6 sm:grid sm:h-[500px] sm:grid-cols-10 sm:p-12 lg:h-[600px] lg:p-20">
@@ -11,9 +18,9 @@ function SpecialDiscounts() {
         </div>
 
         <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pr-1 sm:col-span-6 sm:pr-0">
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
+          {productsWithDiscount ? products?.map((product) => (
+            <ProductItem products={product} key={product.id} />
+          )):<div>منتظر تخفیف های ویژه باشید</div>}
         </div>
       </div>
     </section>
