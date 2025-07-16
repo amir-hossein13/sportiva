@@ -9,6 +9,7 @@ export interface RegisterData {
 
 export interface AuthResponse {
   token: string;
+  user:AuthUser;
 }
 export interface LoginResponse {
   token: string;
@@ -19,3 +20,8 @@ export interface LoginResponse {
   };
 }
 
+export interface AuthUser {
+  username: string;
+  email: string;
+  role: number;
+}

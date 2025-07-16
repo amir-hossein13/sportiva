@@ -1,7 +1,7 @@
 import { AuthResponse, LoginResponse, RegisterData } from '../types/User';
-import { removeToken, setToken } from '../utils/auth';
+import { removeToken, setToken, setUser } from '../utils/auth';
 const apiUrl = import.meta.env.VITE_BASE_URL;
-export async function register(data:RegisterData): Promise<AuthResponse> {
+export async function register(data: RegisterData): Promise<AuthResponse> {
   const res = await fetch(`${apiUrl}/api/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -9,6 +9,7 @@ export async function register(data:RegisterData): Promise<AuthResponse> {
   });
   const result: AuthResponse = await res.json();
   setToken(result.token);
+
   console.log('Token saved to cookie!');
   console.log(result);
   return result;
@@ -31,6 +32,7 @@ export async function login(email: string, password: string): Promise<LoginRespo
 
   const data: LoginResponse = await res.json();
   setToken(data.token);
+
   console.log(data);
   return data;
 }

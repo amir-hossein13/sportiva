@@ -1,0 +1,52 @@
+    <>
+      <div className="flex flex-col flex-wrap items-center sm:flex-row sm:justify-between">
+        <div className="mb-10 sm:w-1/2">
+          <img src="/public/img/blackSho.png" alt="" />
+        </div>
+        <div className="flex flex-col gap-5 sm:w-1/2">
+          <h4 className="text-4xl font-bold whitespace-nowrap md:whitespace-break-spaces">
+            کتانی آدیداس تورشن Adidas torsion Black
+          </h4>
+          <p className="text-sm text-gray-500">
+            رویه این محصول ترکیبی از TPU , اشبالت است که ترکیبی از دوام و انعطاف پذیری و زیبایی را
+            ارائه می دهد  TPU : ماده ای مقاوم در برابر سایش ، انعطاف پذیری و در عین حال مستحکم است
+            که این ویژگی ها طول عمر کفش و راحتی را به ارمغان می آورد  اشبالت : نوعی چرم است که با
+            سطح مخملی و نرم  جلوه ای کلاسیک و زیبا به کفش می بخشد و همچنین تنفس پذیری بالا یکی از
+            ویژگی این نوع چرم است که باعث می شود در حین استفاده در روزمره ، پا بوی بدی نگیرد
+          </p>
+          <div className="flex flex-col gap-5">
+            <select
+              className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
+              name=""
+              id=""
+              value="انتخاب سایز"
+            >
+              <option value="" className="text-gray-300" disabled selected hidden>
+                انتخاب سایز
+              </option>
+            </select>
+            <select
+              className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
+              name=""
+              id=""
+            >
+              <option value="" className="text-gray-300" disabled selected hidden>
+                انتخاب رنگ
+              </option>
+            </select>
+          </div>
+          <div className="mt-3 flex justify-between">
+            <h4 className="text-2xl font-bold whitespace-nowrap">1,199,000 تومان</h4>
+            <div>
+              <HiOutlineHeart className="h-5 w-5" />
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <button className="text-liteBule-100 bg-liteBule-300 w-1/2 rounded-xl px-5 py-2">
+              سفارش
+            </button>
+            <div className="">counter</div>
+          </div>
+        </div>
+      </div>
+    </>

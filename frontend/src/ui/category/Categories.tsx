@@ -8,7 +8,7 @@ function Categories() {
         <div className="mb-6 space-y-3 text-center">
       <Title>برخی دسته بندی محصولات </Title>
         </div>
-        <div className="flex flex-row space-x-7">
+        <div className="flex flex-row flex-wrap space-x-7">
           <CategoriesItem pic="/public/img/box.png" />
           <CategoriesItem pic="/public/img/balls.png" />
           <CategoriesItem pic="/public/img/chess.png" />

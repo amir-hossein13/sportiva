@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllProduct } from '../../services/apiProduct';
+import { getAllProduct, getSingleProduct } from '../../services/apiProduct';
 import { ProductData } from '../../types/Product';
 
 export function useProduct() {
@@ -12,4 +12,12 @@ export function useProduct() {
     queryFn: getAllProduct,
   });
   return { isLoading, error, products };
+}
+
+export function useProductById(id:number) {
+  const { isLoading, data: singleProduct } = useQuery<ProductData>({
+    queryKey: ['singleProduct'],
+    queryFn: () => getSingleProduct(id),
+  });
+  return {isLoading,singleProduct}
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ProductData } from '../types/Product';
 import { formatCurrency } from '../utils/helper';
 
@@ -7,7 +8,7 @@ interface Props {
 
 function ProductItem({ products }: Props) {
   if (!products) return <div>کالایی پیدا نشد </div>;
-  const { name, price, discount, finaleprice, photo, description } = products;
+  const { id,name, price, discount, finaleprice, photo, description } = products;
 
   return (
     <div className="relative flex w-[90%] max-w-[280px] flex-shrink-0 snap-center flex-col items-center justify-around rounded-3xl bg-[#eef5ff] p-4 sm:w-[260px]">
@@ -16,10 +17,13 @@ function ProductItem({ products }: Props) {
           {discount}% تخفیف
         </span>
       )}
+
       <div className="flex w-full flex-col items-center gap-4">
-        <div className="flex h-40 w-full items-center justify-center">
-          <img src={photo} alt="محصول" className="h-full object-contain" />
-        </div>
+        <Link to={`product/${id}`} replace>
+          <div className="flex h-40 w-full items-center justify-center">
+            <img src={photo} alt="محصول" className="h-full object-contain" />
+          </div>
+        </Link>
         <div className="flex w-full flex-col items-start justify-center text-right">
           <h4 className="font-farsi text-base font-extrabold sm:text-lg">{name}</h4>
           <p className="text-sm leading-6 text-[#00000080] sm:text-base">{description}</p>
@@ -32,7 +36,8 @@ function ProductItem({ products }: Props) {
             <h4 className="mb-2 text-sm font-bold text-red-600 sm:text-base">
               {formatCurrency(finaleprice)} تومان
             </h4>
-            <button className="rounded-xl w-full bg-liteBule-300 px-4 py-2 text-sm text-white transition-colors duration-200 hover:bg-blue-600">
+
+            <button className="bg-liteBule-300 w-full rounded-xl px-4 py-2 text-sm text-white transition-colors duration-200 hover:bg-blue-600">
               سفارش
             </button>
           </div>

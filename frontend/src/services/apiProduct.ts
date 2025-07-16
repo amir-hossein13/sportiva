@@ -14,8 +14,8 @@ export function getTopSalesProduct(): Promise<ProductData[]> {
   return apiFetch<ProductData[]>("/api/product/top-sales");
 }
 
-export function getSingleProduct(id: number): Promise<ProductData[]> {
-  return apiFetch<ProductData[]>(`/api/product/${id}`);
+export function getSingleProduct(id: number): Promise<ProductData> {
+  return apiFetch<ProductData>(`/api/product/${id}`);
 }
 
 /////// crud product
