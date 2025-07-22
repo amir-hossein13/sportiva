@@ -1,39 +1,39 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
+import { apiUrl } from './config/config';
 
-const apiUrl = import.meta.env.VITE_BASE_URL;
-const token = Cookies.get("jwt_token");
 
-export async function getUserLikes(id: string): Promise<any> {
+interface Likes {
+  id: number;
+}
+const token = Cookies.get('jwt_token');
+
+export async function getUserLikes(id: number): Promise<Likes> {
   const res = await fetch(`${apiUrl}/api/likes/${id}`, {
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
   });
 
   if (!res.ok) {
     const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to delete comment: ${res.status}`;
+    const message = errorData?.message || `Failed to delete comment: ${res.status}`;
     throw new Error(message);
   }
   const data = await res.json();
   return data;
 }
 
-export async function like(id: number): Promise<any> {
+export async function doLike(product_id: number): Promise<void> {
+
   const res = await fetch(`${apiUrl}/api/like`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      Authorization: token ? `Bearer ${token}` : "",
+      'Content-Type': 'application/json',
+      Authorization: token ? `Bearer ${token}` : '',
     },
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ product_id }),
   });
 
   if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message =
-      errorData?.message || `Failed to delete comment: ${res.status}`;
-    throw new Error(message);
+    throw new Error('Failed to like');
   }
-  const data = await res.json();
-  return data;
+  console.log('Like', res);
 }

@@ -6,7 +6,7 @@ const AppLayout = lazy(() => import("../pages/site/AppLayout"));
 const NotFound = lazy(() => import("../pages/site/NotFound"));
 const Register = lazy(() => import("../pages/site/Register"));
 const Login = lazy(() => import("../pages/site/Login"));
-const AdminPanel = lazy(() => import('../pages/dashboard/AdminPanel'));
+const AdminPanel = lazy(() => import('../pages/panel/AdminPanel'));
 const UserPanel = lazy(() => import('../pages/panel/UserPanel'));
 //route
 import siteRoutes from "./siteRoutes";

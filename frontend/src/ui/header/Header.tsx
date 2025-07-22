@@ -1,13 +1,14 @@
-import { getToken } from '../../utils/auth';
 import Button from '../Button';
 import SearchBar from '../SearchBar';
 import NavBar from './NavBar';
 import { Link } from 'react-router-dom';
 import AuthUserIcons from '../AuthUserIcons';
+import { useAuthStore } from '../../store/authStore';
 
 function Header() {
-  const user = getToken();
-
+  // const user = getToken();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <>
       <div className="my-6 grid items-center justify-center sm:container sm:mx-auto sm:w-full sm:grid-cols-10">
@@ -17,13 +18,15 @@ function Header() {
         <div className="flex justify-center sm:col-span-6">
           <SearchBar />
         </div>
-        {user ? (
+        {isLoggedIn ? (
           <div className="flex justify-end sm:col-span-2">
             <AuthUserIcons />
           </div>
         ) : (
           <div className="flex justify-end sm:col-span-2">
-            <Button>ورورد / ثبت نام</Button>
+            <Link to="/login">
+              <Button>ورود / ثبت نام</Button>
+            </Link>
           </div>
         )}
       </div>

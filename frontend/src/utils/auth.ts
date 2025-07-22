@@ -32,10 +32,10 @@ export function setToken(token: string) {
   });
 }
 
-export const getToken = (): string | undefined => {
-  return Cookies.get(TOKEN_KEY);
+export const getToken = (): string | null => {
+  const token = Cookies.get(TOKEN_KEY);
+  return token ?? null;
 };
-
 export const removeToken = () => {
   Cookies.remove(TOKEN_KEY);
   removeUser();

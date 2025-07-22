@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
-function Button({ children }) {
+type ButtonType = {
+  children: ReactNode;
+};
+function Button({ children }: ButtonType) {
   return (
-    <Link
-      className="font-farsi rounded-lg bg-blue-400 px-6 py-2 text-center text-sm font-bold text-white"
-      to="/login"
-    >
+    <button className="font-farsi rounded-lg bg-blue-400 px-6 py-2 text-center text-sm font-bold text-white">
       {children}
-    </Link>
+    </button>
   );
 }
 

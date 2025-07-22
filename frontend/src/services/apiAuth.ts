@@ -1,5 +1,5 @@
 import { AuthResponse, LoginResponse, RegisterData } from '../types/User';
-import { removeToken, setToken, setUser } from '../utils/auth';
+import { removeToken, setToken } from '../utils/auth';
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export async function register(data: RegisterData): Promise<AuthResponse> {
   const res = await fetch(`${apiUrl}/api/register`, {

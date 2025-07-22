@@ -1,7 +1,6 @@
-import { HiChevronDown } from "react-icons/hi2";
+import { useProduct } from "./useProduct";
 import ProductItem from "../../ui/ProductItem";
 import Title from "../../ui/Title";
-import { useProduct } from "./useProduct";
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function SimilarProduct() {
@@ -19,10 +18,7 @@ function SimilarProduct() {
               ))} */}
               {/* <ProductItem /> */}
             </div>
-            <div className="my-12 flex items-center justify-center gap-2">
-              <HiChevronDown className="text-xl" />
-              <button className="rounded-lg bg-gray-200 px-4 py-2 hover:bg-gray-300">Show More</button>
-            </div>
+
           </section>
     )
 }

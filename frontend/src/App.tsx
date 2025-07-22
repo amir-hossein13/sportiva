@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 import routes from './routes/routes';
 
+
 const client = new QueryClient({
   defaultOptions: {
     queries: {
@@ -18,6 +19,7 @@ function AppRoutes() {
   const router = useRoutes(routes);
   return router;
 }
+
 
 function App() {
   return (
