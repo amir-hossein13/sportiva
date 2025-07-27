@@ -19,11 +19,11 @@ function Header() {
           <SearchBar />
         </div>
         {isLoggedIn ? (
-          <div className="flex justify-end sm:col-span-2">
+          <div className="flex sm:justify-center justify-center mt-5 sm:col-span-2">
             <AuthUserIcons />
           </div>
         ) : (
-          <div className="flex justify-end sm:col-span-2">
+          <div className="flex justify-center sm:col-span-2">
             <Link to="/login">
               <Button>ورود / ثبت نام</Button>
             </Link>

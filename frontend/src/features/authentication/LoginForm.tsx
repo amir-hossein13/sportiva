@@ -25,9 +25,9 @@ function Login() {
   }
   return (
     <form className="mt-5 flex flex-col gap-10" onSubmit={handleSubmit}>
-      <div>
-        <img src="/public/img/Logo.png" alt="" />
-      </div>
+      <Link to='/'>
+        <img src="/img/Logo.png" alt="" />
+      </Link>
       <div className="flex flex-col gap-4">
         <Input
           type="email"

@@ -62,3 +62,18 @@
 .custom-shape-divider-top-1752336564 .shape-fill {
     fill: #FFFFFF;
 }
+
+
+.user-sidebar-gradeint {
+    background: linear-gradient(162deg, #86B6F6 -37.76%, #000D5E 111.73%);
+
+
+}
+
+.banner-gradeint {
+    background: linear-gradient(94deg, #548FDD 0%, #86B6F6 99.09%);
+}
+
+.discount-banner-gradeint {
+    background: linear-gradient(265deg, var(--Color-4, #176B87) 21.51%, var(--Color-5, #FFF) 147.25%);
+}

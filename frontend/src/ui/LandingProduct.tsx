@@ -2,12 +2,17 @@ import { HiChevronDown } from 'react-icons/hi2';
 import ProductItem from './ProductItem';
 import Title from './Title';
 import { useProduct } from '../features/product/useProduct';
+import SpinnerMini from './SpinnerMini';
 
 function LandingProduct() {
   const { isLoading, products } = useProduct();
-  if(isLoading) return 'Loading....'
+  if(isLoading) return (
+    <div className="flex items-center justify-center">
+      <SpinnerMini />
+    </div>
+  );
   return (
-    <section className="h-vh container mx-auto flex flex-col items-center">
+    <section className="h-vh container mx-auto my-10 flex flex-col items-center">
       <div className="mb-20 space-y-3 pt-10 text-center">
         <Title>محصولات</Title>
       </div>

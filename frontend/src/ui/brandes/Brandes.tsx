@@ -1,15 +1,15 @@
 import Title from '../Title';
 const brands = [
-  { name: 'Adidas', img: '/public/img/addidas.png' },
-  { name: 'Everlast', img: '/public/img/boxBrand.png' },
-  { name: 'Other', img: '/public/img/other.png' },
-  { name: 'RDX', img: '/public/img/rdx.png' },
+  { name: 'Adidas', img: '/img/addidas.png' },
+  { name: 'Everlast', img: '/img/boxBrand.png' },
+  { name: 'Other', img: '/img/other.png' },
+  { name: 'RDX', img: '/img/rdx.png' },
 ];
 function Brandes() {
   return (
-    <div className="bg-white py-10 text-center">
+    <div className="text-center sm:container sm:mx-auto my-10">
       <Title>برندهای ویژه</Title>
-      <div className="my-15 flex flex-wrap items-center justify-center gap-10">
+      <div className=" flex flex-wrap items-center justify-center sm:gap-5 gap-5 ">
         {brands.map((brand) => (
           <div key={brand.name} className="flex items-center justify-center">
             <img src={brand.img} alt={brand.name} className="max-h-full max-w-full object-fill" />

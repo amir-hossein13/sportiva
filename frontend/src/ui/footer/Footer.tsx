@@ -7,7 +7,7 @@ function Footer() {
     <>
       <div className="w-full overflow-hidden leading-none">
         <svg
-          className="h-20 w-full md:h-28 rotate-180"
+          className="h-20 w-full rotate-180 md:h-28"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -24,15 +24,14 @@ function Footer() {
       </div>
 
       <footer className="bg-aqua relative h-auto">
-        <div className="text-liteBule-100 text-bold font-farsi flex flex-col justify-around space-y-6 p-4 font-bold md:flex-row md:space-y-0 md:p-10">
-
-          <div className="text-center md:text-left">
+        <div className="text-liteBule-100 text-bold font-farsi flex flex-col justify-around p-4 font-bold md:flex-row md:space-y-0 md:p-10">
+          <div className="gap-y-5 text-center md:text-left justify-start">
             <FooterTitle>راهنمای خرید</FooterTitle>
             <FooterMiniTitle>رویه ارسال سفارش</FooterMiniTitle>
             <FooterMiniTitle>شیوه های پرداخت</FooterMiniTitle>
           </div>
 
-          <div className="text-center md:text-left">
+          <div className="gap-y-5 text-center md:text-left justify-start">
             <FooterTitle>خدمات مشتریان</FooterTitle>
             <FooterMiniTitle>رئیه های بازگرداندن کالا</FooterMiniTitle>
             <FooterMiniTitle>شرایط استفاده</FooterMiniTitle>
@@ -40,14 +39,14 @@ function Footer() {
             <FooterMiniTitle>ثبت شکایت</FooterMiniTitle>
           </div>
 
-          <div className="text-center md:text-left">
+          <div className="gap-y-5 text-center md:text-left justify-start">
             <FooterTitle>خدمات مشتریان</FooterTitle>
             <FooterMiniTitle>تماس با اسپورتیوا</FooterMiniTitle>
             <FooterMiniTitle>درباره ی اسپورتیوا</FooterMiniTitle>
             <FooterMiniTitle>وبلاگ</FooterMiniTitle>
           </div>
 
-          <div className="text-center md:text-left">
+          <div className="gap-y-5 mt-5  text-center md:text-left">
             <h4 className="mb-5">از تخفیف ها و جدیدترین های فروشگاه باخبر شوید:</h4>
             <div className="mx-auto flex w-full max-w-md items-center rounded-full bg-[#D9D9D980] p-1 md:mx-0">
               <input
@@ -59,7 +58,7 @@ function Footer() {
                 إرسال
               </button>
             </div>
-            <div className="mt-4 flex justify-center space-x-2 text-xl md:text-2xl">
+            <div className="mt-5 flex justify-center space-x-2 text-xl md:text-2xl">
               <div className="border-liteBule-200 rounded-full border p-1 md:p-2">
                 <FaLinkedin />
               </div>
@@ -73,7 +72,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="text-liteBule-100 flex flex-col items-center justify-center space-y-2 py-4 text-center md:py-10">
+        <div className="text-liteBule-100 flex  flex-col items-center justify-center space-y-2 py-4 text-center md:py-10">
           <img className="w-16 object-cover md:w-auto" src="/public/img/Line.png" alt="" />
           <p className="text-sm md:text-base">حقوق سایت برای تولیدی اسپرتیوا محفوظ می باشد</p>
         </div>

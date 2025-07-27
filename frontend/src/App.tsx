@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 import routes from './routes/routes';
 
-
+type DevtoolsPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 const client = new QueryClient({
   defaultOptions: {
     queries: {
@@ -20,11 +20,10 @@ function AppRoutes() {
   return router;
 }
 
-
 function App() {
   return (
     <QueryClientProvider client={client}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" />
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>

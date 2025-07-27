@@ -3,7 +3,11 @@ type Props={
     children:ReactNode
 }
 function FooterMiniTitle({ children }:Props) {
-  return <h3 className="text-2xl">{children}</h3>;
+  return (
+    <div className="mt-6 flex md:justify-start justify-center">
+      <h3 className="text-1xl text-gray-200">{children}</h3>
+    </div>
+  );
 }
 
 export default FooterMiniTitle
