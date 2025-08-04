@@ -7,12 +7,23 @@ import {
   HiOutlineHeart,
   HiOutlineChat,
 } from 'react-icons/hi';
+import { NavLink } from 'react-router-dom';
+
+const navItems = [
+  { label: 'پیشخوان', to: '/user/main' },
+  { label: 'مدیریت پروفایل کاربری', to: '/user/manege' },
+  { label: 'صفحه محصولات', to: '/user/products' },
+  { label: 'سبد خرید', to: '/user/basket' },
+  { label: 'سفارش‌ها', to: '/user/orders' },
+  { label: 'لیست علاقه‌مندی‌ها', to: '/user/favorite' },
+  { label: 'پیام‌ها و پشتیبانی', to: '/user/support' },
+];
 
 function SideIconNav() {
   return (
-    <div className="relative sm:flex sm:h-screen hidden sm:items-center">
+    <div className="relative hidden sm:flex sm:h-screen sm:items-center">
       <svg
-        className="md:block hidden"
+        className="hidden md:block"
         width="85"
         height="85%"
         viewBox="0 0 95 710"
@@ -45,13 +56,25 @@ function SideIconNav() {
         </div>
 
         <ul className="flex flex-1 flex-col justify-center space-y-6 pr-4">
-          <li className="text-lg text-white">پیشخوان</li>
+          {navItems.map(({ label, to }) => (
+            <li key={to} className="">
+              <NavLink
+                to={to}
+                className={({ isActive }) =>
+                  `text-sm ${isActive ? 'active-color w-full p-3 font-bold text-white' : 'text-white'} transition-colors`
+                }
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
+          {/* <li className="text-lg text-white">پیشخوان</li>
           <li className="text-white">مدیریت پروفایل کاربری</li>
           <li className="text-white">صفحه محصولات</li>
           <li className="text-white">سبد خرید</li>
           <li className="text-white">سفارش‌ها</li>
           <li className="text-white">لیست علاقه‌مندی‌ها</li>
-          <li className="text-white">پیام‌ها و پشتیبانی</li>
+          <li className="text-white">پیام‌ها و پشتیبانی</li> */}
         </ul>
       </div>
     </div>

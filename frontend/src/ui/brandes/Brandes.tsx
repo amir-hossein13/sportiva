@@ -7,9 +7,9 @@ const brands = [
 ];
 function Brandes() {
   return (
-    <div className="text-center sm:container sm:mx-auto my-10">
+    <div className="fade-in my-10 text-center sm:container sm:mx-auto">
       <Title>برندهای ویژه</Title>
-      <div className=" flex flex-wrap items-center justify-center sm:gap-5 gap-5 ">
+      <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-5">
         {brands.map((brand) => (
           <div key={brand.name} className="flex items-center justify-center">
             <img src={brand.img} alt={brand.name} className="max-h-full max-w-full object-fill" />

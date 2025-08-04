@@ -5,7 +5,7 @@ import UserNotif from '../../ui/userPanel/UserNotif';
 
 function MainUserContent() {
   return (
-    <section className="bg-white sm:max-h-screen">
+    <section className="bg-[#D1E4FF] sm:h-dvh">
       <div className="container mx-auto space-y-11 p-5 sm:p-10">
         <UserHeader />
         <div>
@@ -13,7 +13,7 @@ function MainUserContent() {
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-10">
-          <div className="shadow-stone-500 col-span-1 row-span-1 rounded-xl bg-white p-4 shadow-md  lg:col-span-4 lg:row-span-12">
+          <div className="col-span-1 row-span-1 rounded-xl bg-white p-4  lg:col-span-4 lg:row-span-12">
             <h4 className="text-aqua text-lg font-semibold">آخرین سفارش شما</h4>
             <div className="flex items-center justify-between">
               <div>
@@ -34,7 +34,7 @@ function MainUserContent() {
             </div>
           </div>
 
-          <div className="shadow-stone-500 col-span-1 row-span-1 rounded-xl bg-white p-4 shadow-md  lg:col-span-6 lg:row-span-12">
+          <div className="col-span-1 row-span-1 rounded-xl bg-white p-4  lg:col-span-6 lg:row-span-12">
             <h4 className="text-aqua text-lg font-semibold">آخرین سفارش شما</h4>
             <div className="flex items-center justify-between">
               <div>
@@ -76,7 +76,7 @@ function MainUserContent() {
             />
           </div>
 
-          <div className="shadow-stone-500 col-span-1 row-span-1 rounded-xl bg-white p-4 shadow-md  lg:col-span-7 lg:row-span-10">
+          <div className="col-span-1 row-span-1 rounded-xl bg-white p-4  lg:col-span-7 lg:row-span-10">
             <h4 className="text-aqua text-lg font-semibold">خرید های شما</h4>
             <CustomAreaChart />
           </div>

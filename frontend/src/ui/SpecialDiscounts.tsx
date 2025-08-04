@@ -1,15 +1,16 @@
 import { useProduct } from '../features/product/useProduct';
 import ProductItem from './ProductItem';
+import SpinnerMini from './SpinnerMini';
 
 function SpecialDiscounts() {
   const {isLoading,products} = useProduct()
   const productsWithDiscount = products.filter(
     (product) => product.discount && product.discount > 0
   );
-
-  console.log(products);
+  if(isLoading) return <SpinnerMini/>
+  // console.log(products);
   return (
-    <section className="my-20  sm:container sm:mx-auto">
+    <section className="fade-in my-20 sm:container sm:mx-auto">
       <div className="discount-banner-gradeint flex flex-col gap-6 rounded-4xl p-6 sm:grid sm:h-[500px] sm:grid-cols-10 sm:p-12 lg:h-[600px] lg:p-20">
         <div className="flex flex-col items-center justify-center gap-4 text-center sm:col-span-4">
           <img src="/img/ticket-discount.png" alt="تخفیف" className="w-24 sm:w-32" />

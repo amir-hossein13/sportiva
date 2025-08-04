@@ -18,7 +18,9 @@
     --color-liteBule-200: #B4D4FF;
     --color-liteBule-100: #EEF5FF;
 }
-
+*{
+    scroll-behavior: smooth;
+}
 /* .curve::before {
     content: '';
     display: block;
@@ -76,4 +78,25 @@
 
 .discount-banner-gradeint {
     background: linear-gradient(265deg, var(--Color-4, #176B87) 21.51%, var(--Color-5, #FFF) 147.25%);
+}
+
+.active-color {
+    border-radius: 0.625rem;
+    border: 0.5px solid #EEF5FF;
+    background: rgba(255, 255, 255, 0.10);
+    /* width: 100%; */
+
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 import routes from './routes/routes';
 
-type DevtoolsPosition = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 const client = new QueryClient({
   defaultOptions: {
     queries: {

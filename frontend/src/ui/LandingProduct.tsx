@@ -3,29 +3,32 @@ import ProductItem from './ProductItem';
 import Title from './Title';
 import { useProduct } from '../features/product/useProduct';
 import SpinnerMini from './SpinnerMini';
+import { useState } from 'react';
 
 function LandingProduct() {
   const { isLoading, products } = useProduct();
-  if(isLoading) return (
-    <div className="flex items-center justify-center">
-      <SpinnerMini />
-    </div>
-  );
+  const [visibleCount, setVisibleCount] = useState(8);
+  if (isLoading)
+    return (
+        <SpinnerMini />
+    );
   return (
-    <section className="h-vh container mx-auto my-10 flex flex-col items-center">
+    <section className="fade-in container mx-auto my-10 flex flex-col items-center px-4 py-16">
       <div className="mb-20 space-y-3 pt-10 text-center">
         <Title>محصولات</Title>
       </div>
       <div className="grid w-full grid-cols-2 justify-items-center gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4 lg:gap-x-0">
-        {products?.map((product) => (
+        {products?.slice(0, visibleCount).map((product) => (
           <ProductItem products={product} key={product.id} />
         ))}
         {/* <ProductItem /> */}
       </div>
-      <div className="my-12 flex items-center justify-center gap-2">
-        <HiChevronDown className="text-xl" />
-        <button className="rounded-lg bg-gray-200 px-4 py-2 hover:bg-gray-300">Show More</button>
-      </div>
+      {products.length > visibleCount && (
+        <div className="my-12 flex items-center justify-center gap-2">
+          <HiChevronDown className="text-xl" />
+          <button className="rounded-lg bg-gray-200 px-4 py-2 hover:bg-gray-300">Show More</button>
+        </div>
+      )}
     </section>
   );
 }

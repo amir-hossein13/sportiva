@@ -3,12 +3,12 @@ import CategoriesItem from "./CategoriesItem";
 
 function Categories() {
   return (
-    <section className="container mx-auto my-10">
+    <section className="fade-in container mx-auto my-10 px-4">
       <div className="flex flex-col items-center gap-6">
         <div className="mb-6 space-y-3 text-center">
-      <Title>برخی دسته بندی محصولات </Title>
+          <Title>برخی دسته بندی محصولات</Title>
         </div>
-        <div className="flex flex-row flex-wrap space-x-7">
+        <div className="flex flex-wrap justify-center gap-6">
           <CategoriesItem pic="/img/box.png" />
           <CategoriesItem pic="/img/balls.png" />
           <CategoriesItem pic="/img/chess.png" />

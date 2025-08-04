@@ -10,28 +10,28 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   console.log(isLoggedIn);
   return (
-    <>
-      <div className="my-6 grid items-center justify-center sm:container sm:mx-auto sm:w-full sm:grid-cols-10">
-        <Link to="/" className="flex justify-start p-3 sm:col-span-2">
-          <img className="" src="/public/img/Logo.png" alt="" />
+    <div className="sticky top-0 z-50 w-full bg-white shadow-md">
+      <div className="container mx-auto flex flex-col items-center justify-between px-5 py-4 sm:flex-row">
+        <Link to="/" className="mb-4 flex items-center sm:mb-0 sm:w-1/5">
+          <img src="/img/Logo.png" alt="Logo" className="h-10 w-auto" />
         </Link>
-        <div className="flex justify-center sm:col-span-6">
+
+        <div className="flex-grow px-4 sm:w-3/5">
           <SearchBar />
         </div>
-        {isLoggedIn ? (
-          <div className="flex sm:justify-center justify-center mt-5 sm:col-span-2">
+
+        <div className="flex items-center justify-center sm:w-1/5">
+          {isLoggedIn ? (
             <AuthUserIcons />
-          </div>
-        ) : (
-          <div className="flex justify-center sm:col-span-2">
+          ) : (
             <Link to="/login">
               <Button>ورود / ثبت نام</Button>
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </div>
       <NavBar />
-    </>
+    </div>
   );
 }
 
