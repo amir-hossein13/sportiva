@@ -1,8 +1,12 @@
-import UserPanelLayout from '../../features/userPanel/UserPanelLayout';
+import UserContent from '@/ui/userPanel/UserContent';
+import UserPNavbar from '@/ui/userPanel/UserPNavbar';
 
 function UserPanel() {
   return (
-    <div><UserPanelLayout/></div>
+    <div className='bg-liteBule-100 min-h-dvh'>
+      <UserPNavbar />
+      <UserContent/>
+    </div>
   );
 }
 

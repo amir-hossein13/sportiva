@@ -4,7 +4,6 @@ import { useProductById } from './useProduct';
 import Spinner from '../../ui/Spinner';
 import { formatCurrency } from '../../utils/helper';
 import { useLikeStore } from '../../store/likeStore';
-import { doLike } from '../../services/apiLikes';
 import { useCounter } from '../../store/productCountStore';
 import { useAuthStore } from '../../store/authStore';
 
@@ -59,6 +58,7 @@ function ProductInfo() {
               <option value="" className="text-gray-300" disabled selected hidden>
                 انتخاب رنگ
               </option>
+              <option value={color}>{color}</option>
             </select>
           </div>
           {discount ? (

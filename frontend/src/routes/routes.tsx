@@ -10,7 +10,7 @@ const AdminPanel = lazy(() => import('../pages/dashboard/AdminPanel'));
 // const UserPanel = lazy(() => import('../pages/panel-user/UserPanel'));
 //route
 import siteRoutes from './siteRoutes';
-import { userRoute } from '../features/userPanel/userRoute';
+import UserPanel from '../pages/panel-user/UserPanel';
 
 const routes: RouteObject[] = [
   { path: '/', element: <AppLayout />, children: siteRoutes },
@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
   { path: 'login', element: <Login /> },
 
   { path: 'admin', element: <AdminPanel /> },
-  // { path: 'user', element: <UserPanel />, children: userRoute },
-  ...userRoute
+  { path: 'user', element: <UserPanel /> },
+  // ...userRoute
 ];
 export default routes;
