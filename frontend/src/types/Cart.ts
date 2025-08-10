@@ -1,5 +1,8 @@
-export interface CartData {
+export interface CartItem {
     id:number;
-    price: number;
     quantity: number;
+}
+
+export interface CartData {
+  carts: CartItem[]; 
 }

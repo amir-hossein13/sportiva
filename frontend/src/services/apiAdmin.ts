@@ -35,7 +35,7 @@ export const deleteApplyFail = () => {
 };
 
 export const postApplyVerify = () => {
-  return apiFetch<any>(`${apiUrl}/api/apply/all`, {
+  return apiFetch<unknown>(`${apiUrl}/api/apply/all`, {
     method: "POST",
     headers: getAuthHeaders(),
   });

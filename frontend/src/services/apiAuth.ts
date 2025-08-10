@@ -1,43 +1,38 @@
 import { AuthResponse, LoginResponse, RegisterData } from '../types/User';
 import { removeToken, setToken } from '../utils/auth';
-const apiUrl = import.meta.env.VITE_BASE_URL;
-export async function register(data: RegisterData): Promise<AuthResponse> {
-  const res = await fetch(`${apiUrl}/api/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...data, role: 1 }),
-  });
-  const result: AuthResponse = await res.json();
-  setToken(result.token);
+import { apiFetch } from '../utils/apiFetch';
 
+// const apiUrl = import.meta.env.VITE_BASE_URL;
+
+// ثبت‌نام
+export async function register(data: RegisterData): Promise<AuthResponse> {
+  const result = await apiFetch<AuthResponse>(`/api/register`, {
+    method: 'POST',
+    body: { ...data, role: 1 },
+  });
+
+  setToken(result.token);
   console.log('Token saved to cookie!');
   console.log(result);
+
   return result;
 }
 
+// ورود
 export async function login(email: string, password: string): Promise<LoginResponse> {
-  const res = await fetch(`${apiUrl}/api/login`, {
+  const res = await apiFetch<LoginResponse>(`/api/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    body: { email, password },
   });
 
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-    throw new Error(error?.message || 'Login failed');
-  }
+  setToken(res.token);
+  console.log(res);
 
-  const data: LoginResponse = await res.json();
-  setToken(data.token);
-
-  console.log(data);
-  return data;
+  return res;
 }
 
+// خروج
 export function logout() {
   removeToken();
-  console.log('token deleted successfully');
+  console.log('Token deleted successfully');
 }

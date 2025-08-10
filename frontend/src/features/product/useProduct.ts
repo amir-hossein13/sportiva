@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllProduct, getSingleProduct } from '../../services/apiProduct';
-import { ProductData } from '../../types/Product';
+import { getAllProduct, getSingleProduct } from '@/services/apiProduct';
+import { ProductData } from '@/types/Product';
 
 export function useProduct() {
   const {
     isLoading,
     data: products = [],
     error,
-  } = useQuery<ProductData[]>({
+  } = useQuery<ProductData[]>({ 
     queryKey: ['product'],
     queryFn: getAllProduct,
   });
@@ -15,9 +15,9 @@ export function useProduct() {
 }
 
 export function useProductById(id:number) {
-  const { isLoading, data: singleProduct } = useQuery<ProductData>({
+  const { isLoading, data: singleProduct,error } = useQuery<ProductData>({
     queryKey: ['singleProduct'],
     queryFn: () => getSingleProduct(id),
   });
-  return {isLoading,singleProduct}
+  return {isLoading,singleProduct,error}
 }

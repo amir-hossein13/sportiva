@@ -7,7 +7,7 @@ function useSignup() {
   const navigate = useNavigate();
   const { mutate: signup, isPending } = useMutation({
     mutationFn: apiRegister,
-    onSuccess: (user) => {
+    onSuccess: () => {
       toast.success(
         'account successFully created Please verify the new account from the user email address'
       );

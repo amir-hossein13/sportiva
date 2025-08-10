@@ -7,7 +7,7 @@ const USER_KEY = 'user';
 // user auth
 export function setUser(user: object) {
   Cookies.set(USER_KEY, JSON.stringify(user), {
-    expires: 7,
+    expires: 10,
     secure: true,
     sameSite: 'strict',
     path: '/',

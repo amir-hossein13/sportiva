@@ -1,11 +1,12 @@
 import { HiChevronLeft, HiHeart, HiOutlineHeart } from 'react-icons/hi2';
 import { useParams } from 'react-router-dom';
 import { useProductById } from './useProduct';
-import Spinner from '../../ui/Spinner';
-import { formatCurrency } from '../../utils/helper';
-import { useLikeStore } from '../../store/likeStore';
-import { useCounter } from '../../store/productCountStore';
-import { useAuthStore } from '../../store/authStore';
+import { formatCurrency } from '@/utils/helper';
+import { useLikeStore } from '@/store/likeStore';
+import { useCounter } from '@/store/productCountStore';
+import { useAuthStore } from '@/store/authStore';
+import { useAddCart } from '../userPanel/basket/useAddCart';
+import Spinner from '@/ui/Spinner';
 
 function ProductInfo() {
   const params = useParams();
@@ -13,14 +14,22 @@ function ProductInfo() {
   const { isLoading, singleProduct } = useProductById(productId);
   const { liked, toggleLikes } = useLikeStore();
   const { count, inc, dec } = useCounter();
+  const { addCart, isPending } = useAddCart();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   if (isLoading) return <Spinner />;
+
   const { name, price, discount, finaleprice, photo, description, color, categorys } =
     singleProduct;
-  console.log(singleProduct);
-  function handelLike() {
+
+  function handleLike() {
     toggleLikes(productId);
   }
+
+  function handleAddToCart() {
+    addCart({ id: productId, quantity: count });
+  }
+
   return (
     <>
       <div className="flex gap-2">
@@ -32,7 +41,7 @@ function ProductInfo() {
       </div>
       <div className="flex flex-col flex-wrap items-center sm:flex-row sm:justify-between">
         <div className="mb-10 sm:w-1/2">
-          <img src={photo} alt="" />
+          <img src={photo} alt={name} />
         </div>
         <div className="flex flex-col gap-5 sm:w-1/2">
           <h4 className="text-4xl font-bold whitespace-nowrap md:whitespace-break-spaces">
@@ -42,20 +51,22 @@ function ProductInfo() {
           <div className="flex flex-col gap-5">
             <select
               className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
-              name=""
-              id=""
-              value="انتخاب سایز"
+              name="size"
+              id="size"
+              defaultValue=""
             >
-              <option value="" className="text-gray-300" disabled selected hidden>
+              <option value="" className="text-gray-300" disabled hidden>
                 انتخاب سایز
               </option>
+              {/* Add size options dynamically if available */}
             </select>
             <select
               className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
-              name=""
-              id=""
+              name="color"
+              id="color"
+              defaultValue=""
             >
-              <option value="" className="text-gray-300" disabled selected hidden>
+              <option value="" className="text-gray-300" disabled hidden>
                 انتخاب رنگ
               </option>
               <option value={color}>{color}</option>
@@ -63,35 +74,37 @@ function ProductInfo() {
           </div>
           {discount ? (
             <span className="text-liteBule-100 w-10 rounded-lg bg-red-500 p-1">{discount}%</span>
-          ) : (
-            ''
-          )}
+          ) : null}
           <div className="mt-3 flex justify-between">
             <h4 className="text-2xl whitespace-nowrap line-through">{formatCurrency(price)}</h4>
             <h4 className="text-2xl font-bold whitespace-nowrap text-red-500">
               {formatCurrency(finaleprice)}
             </h4>
             {isLoggedIn ? (
-              <div onClick={handelLike}>
+              <button onClick={handleLike} aria-label="Toggle like">
                 {liked ? (
                   <HiHeart className="h-5 w-5 text-red-500" />
                 ) : (
                   <HiOutlineHeart className="h-5 w-5" />
                 )}
-                {/* <HiOutlineHeart className="h-5 w-5" /> */}
-              </div>
+              </button>
             ) : (
               <div>برای اضافه کردن به علاقه مندی ها اول ثبت نام کنید</div>
             )}
           </div>
           <div className="flex justify-between">
-            <button className="text-liteBule-100 bg-liteBule-300 w-1/2 rounded-xl px-5 py-2">
-              سفارش
+            <button
+              onClick={handleAddToCart}
+              disabled={isPending}
+              className="text-liteBule-100 bg-darkbule pointer-events-auto z-10 w-1/2 cursor-pointer rounded-xl px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isPending ? 'در حال افزودن...' : 'سفارش'}
             </button>
             <div className="flex w-fit items-center overflow-hidden rounded-xl border select-none rtl:flex-row-reverse">
               <button
                 onClick={dec}
-                className="flex h-10 w-10 items-center justify-center text-xl text-blue-900 transition hover:bg-blue-100"
+                disabled={isPending}
+                className="flex h-10 w-10 items-center justify-center text-xl text-blue-900 transition hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 –
               </button>
@@ -100,7 +113,8 @@ function ProductInfo() {
               </div>
               <button
                 onClick={inc}
-                className="flex h-10 w-10 items-center justify-center text-xl text-blue-900 transition hover:bg-blue-100"
+                disabled={isPending}
+                className="flex h-10 w-10 items-center justify-center text-xl text-blue-900 transition hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 +
               </button>

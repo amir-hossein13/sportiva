@@ -1,9 +1,9 @@
 // utils/apiFetch.ts
-import Cookies from "js-cookie";
-import { apiUrl } from "../services/config/config";
+import Cookies from 'js-cookie';
+import { apiUrl } from '../services/config/config';
+import { removeToken } from './auth';
 
-
-type Method = "GET" | "POST" | "PUT" | "DELETE";
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 interface ApiFetchOptions {
   method?: Method;
@@ -11,19 +11,22 @@ interface ApiFetchOptions {
   auth?: boolean;
 }
 
-export async function apiFetch<T>(
-  path: string,
-  options: ApiFetchOptions = {}
-): Promise<T> {
-  const { method = "GET", body, auth = false } = options;
+export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
+  const { method = 'GET', body, auth = false } = options;
 
+  // هدرها
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    // 'Content-Type': 'application/json',
+    Accept: 'application/json',
   };
-
+  if (body) {
+    headers['Content-Type'] = 'application/json';
+  }
   if (auth) {
-    const token = Cookies.get("jwt_token");
-    if (token) headers.Authorization = `Bearer ${token}`;
+    const token = Cookies.get('jwt_token');
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
   }
 
   const res = await fetch(`${apiUrl}${path}`, {
@@ -32,11 +35,28 @@ export async function apiFetch<T>(
     body: body ? JSON.stringify(body) : undefined,
   });
 
+  if (res.status === 401) {
+    removeToken();
+    window.location.href = '/login';
+    return Promise.reject(new Error('Unauthorized'));
+  }
+
   if (!res.ok) {
-    const errorData = await res.json().catch(() => null);
-    const message = errorData?.message || `Request failed: ${res.status}`;
+    let message = `Request failed: ${res.status}`;
+    try {
+      const errorData = await res.json();
+      if (errorData?.message) {
+        message = errorData.message;
+      }
+    } catch {
+    }
     throw new Error(message);
   }
-  const data:T = await res.json()
-  return data
+
+  if (res.status === 204 || res.headers.get('Content-Length') === '0') {
+    return null as T;
+  }
+
+  
+  return res.json() as Promise<T>;
 }

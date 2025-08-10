@@ -1,9 +1,15 @@
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import BasketItem from './BasketItem';
+import { useBasket } from '@/features/userPanel/basket/useBaket';
+import Spinner from '../Spinner';
+
 
 function UserBasket() {
+  const { isLoading, cartList } = useBasket();
+  console.log(cartList);
+  if (isLoading) return <Spinner />;
   return (
-    <div className="mt-3 flex h-2/3 flex-col rounded-lg bg-white p-5">
+    <div className="mt-3 flex flex-col rounded-lg bg-white p-5">
       {/* Header */}
       <div className="mb-4 flex items-center gap-2">
         <HiOutlineShoppingCart className="text-aqua h-5 w-5" />
@@ -12,12 +18,10 @@ function UserBasket() {
 
       {/* Scrollable Basket Items */}
       <div className="flex-1 space-y-3 overflow-y-auto pr-2">
-        <BasketItem />
-        <BasketItem />
-        <BasketItem />
-        <BasketItem />
-        <BasketItem />
-        <BasketItem />
+        {/* <BasketItem /> */}
+        {cartList.map((item) => (
+          <BasketItem key={item.id} item={item} />
+        ))}
       </div>
       <hr className="text-gray-400" />
       <div className="mt-4 flex justify-between">

@@ -73,7 +73,7 @@ function Footer() {
         </div>
 
         <div className="text-liteBule-100 flex  flex-col items-center justify-center space-y-2 py-4 text-center md:py-10">
-          <img className="w-16 object-cover md:w-auto" src="/public/img/Line.png" alt="" />
+          <img className="w-16 object-cover md:w-auto" src="/img/Line.png" alt="" />
           <p className="text-sm md:text-base">حقوق سایت برای تولیدی اسپرتیوا محفوظ می باشد</p>
         </div>
       </footer>
