@@ -8,7 +8,6 @@ import { useAuthStore } from '../../store/authStore';
 function Header() {
   // const user = getToken();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  console.log(isLoggedIn);
   return (
     <div className="sticky top-0 z-50 w-full bg-white shadow-md">
       <div className="container mx-auto flex flex-col items-center justify-between px-5 py-4 sm:flex-row">

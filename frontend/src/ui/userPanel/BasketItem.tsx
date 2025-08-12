@@ -2,7 +2,9 @@ import { useProductById } from '@/features/product/useProduct';
 import { HiMiniMinus, HiMiniPlus, HiOutlineTrash } from 'react-icons/hi2';
 import SpinnerMini from '../SpinnerMini';
 import { formatCurrency } from '@/utils/helper';
-import { useDeleteBasketItem } from '@/features/userPanel/basket/useDeleteBasketItem';
+import { useDeleteBasketItem } from '@/features/userPanel/basket/hooks/useDeleteBasketItem';
+import { useCounter } from '@/store/productCountStore';
+import { useUpdateQuntity } from '@/features/userPanel/basket/hooks/useUpdateQuntity';
 
 interface CartData {
   id: number;
@@ -18,6 +20,7 @@ function BasketItem({ item }: { item: CartData }) {
   const { id, product_id, quantity } = item; // Renamed price to cartPrice
   const { isLoading, singleProduct, error } = useProductById(product_id);
   const { isDeleting, deleteItem } = useDeleteBasketItem();
+  const { updateQuntity, isPending } = useUpdateQuntity();
   if (isLoading) return <SpinnerMini />;
   if (error || !singleProduct) {
     return (
@@ -69,11 +72,19 @@ function BasketItem({ item }: { item: CartData }) {
 
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <button className="flex h-8 w-8 items-center justify-center rounded border border-blue-200 text-blue-600">
+          <button
+            disabled={isPending || quantity <= 1}
+            onClick={() => updateQuntity({ id, quantity: quantity - 1 })}
+            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-blue-200 text-blue-600"
+          >
             <HiMiniMinus className="h-4 w-4" />
           </button>
           <span className="text-sm font-medium text-gray-700">{quantity}</span>
-          <button className="flex h-8 w-8 items-center justify-center rounded border border-blue-200 text-blue-600">
+          <button
+            disabled={isPending || quantity <= 4}
+            onClick={() => updateQuntity({ id, quantity: quantity + 1 })}
+            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-blue-200 text-blue-600"
+          >
             <HiMiniPlus className="h-4 w-4" />
           </button>
         </div>

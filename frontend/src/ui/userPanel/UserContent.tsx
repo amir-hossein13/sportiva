@@ -1,4 +1,4 @@
-import SideBarUser from './SideBarUser';
+import SideBarUser from '../../features/userPanel/basket/SideBarUser';
 import TabContent from './TabContent';
 import TabList from './TabList';
 
@@ -9,7 +9,7 @@ function UserContent() {
         <SideBarUser />
         <div className="flex w-full flex-col md:w-2/3">
           <TabList />
-              <TabContent/>
+          <TabContent />
         </div>
       </div>
     </div>

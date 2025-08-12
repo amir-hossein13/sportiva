@@ -41,22 +41,12 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
     return Promise.reject(new Error('Unauthorized'));
   }
 
-  if (!res.ok) {
-    let message = `Request failed: ${res.status}`;
-    try {
-      const errorData = await res.json();
-      if (errorData?.message) {
-        message = errorData.message;
-      }
-    } catch {
-    }
-    throw new Error(message);
-  }
+  
 
   if (res.status === 204 || res.headers.get('Content-Length') === '0') {
     return null as T;
   }
 
-  
-  return res.json() as Promise<T>;
+  const data = res.json()
+  return data;
 }

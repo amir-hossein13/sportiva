@@ -47,11 +47,11 @@ export const getCartList = async (): Promise<CartData> => {
       Authorization: `Bearer ${getToken()}`,
     },
   });
-    if (res.status === 401) {
-      removeToken();
-      window.location.href = '/login';
-      return Promise.reject(new Error('Unauthorized'));
-    }
+  if (res.status === 401) {
+    removeToken();
+    window.location.href = '/login';
+    return Promise.reject(new Error('Unauthorized'));
+  }
   if (!res.ok) throw new Error('Failed to fetch cart list');
   return res.json();
 };
@@ -120,7 +120,9 @@ export const updateCartItem = async (id: number, quantity: number): Promise<Cart
     return Promise.reject(new Error('Unauthorized'));
   }
   if (!res.ok) throw new Error('Failed to update item');
-  return res.json();
+  const text = await res.text();
+  
+  return JSON.parse(text);
 };
 
 // 🗑️ حذف آیتم از سبد خرید

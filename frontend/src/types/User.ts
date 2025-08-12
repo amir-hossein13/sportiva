@@ -9,15 +9,11 @@ export interface RegisterData {
 
 export interface AuthResponse {
   token: string;
-  user:AuthUser;
+  username:AuthUser;
 }
 export interface LoginResponse {
   token: string;
-  user: {
-    id: number;
-    email: string;
-    password: string;
-  };
+  username:AuthUser; 
 }
 
 export interface AuthUser {

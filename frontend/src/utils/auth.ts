@@ -5,8 +5,8 @@ const TOKEN_KEY = 'jwt_token';
 
 const USER_KEY = 'user';
 // user auth
-export function setUser(user: object) {
-  Cookies.set(USER_KEY, JSON.stringify(user), {
+export function setUser(username: object) {
+  Cookies.set(USER_KEY, JSON.stringify(username), {
     expires: 10,
     secure: true,
     sameSite: 'strict',

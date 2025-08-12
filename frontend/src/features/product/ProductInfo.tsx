@@ -5,8 +5,9 @@ import { formatCurrency } from '@/utils/helper';
 import { useLikeStore } from '@/store/likeStore';
 import { useCounter } from '@/store/productCountStore';
 import { useAuthStore } from '@/store/authStore';
-import { useAddCart } from '../userPanel/basket/useAddCart';
+import { useAddCart } from '../userPanel/basket/hooks/useAddCart';
 import Spinner from '@/ui/Spinner';
+import { useState } from 'react';
 
 function ProductInfo() {
   const params = useParams();
@@ -15,6 +16,7 @@ function ProductInfo() {
   const { liked, toggleLikes } = useLikeStore();
   const { count, inc, dec } = useCounter();
   const { addCart, isPending } = useAddCart();
+  const [noMore, setIsNoMore] = useState(false);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   if (isLoading) return <Spinner />;
@@ -28,6 +30,7 @@ function ProductInfo() {
 
   function handleAddToCart() {
     addCart({ id: productId, quantity: count });
+    setIsNoMore(true);
   }
 
   return (
@@ -95,10 +98,11 @@ function ProductInfo() {
           <div className="flex justify-between">
             <button
               onClick={handleAddToCart}
-              disabled={isPending}
+              disabled={isPending || noMore}
               className="text-liteBule-100 bg-darkbule pointer-events-auto z-10 w-1/2 cursor-pointer rounded-xl px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isPending ? 'در حال افزودن...' : 'سفارش'}
+              {isPending ? 'در حال افزودن...' : ''}
+              {noMore ? 'موجود در سبد خرید' : 'سفارش'}
             </button>
             <div className="flex w-fit items-center overflow-hidden rounded-xl border select-none rtl:flex-row-reverse">
               <button

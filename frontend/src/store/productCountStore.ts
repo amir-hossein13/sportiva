@@ -1,13 +1,23 @@
 import { create } from 'zustand';
+
 interface Counter {
   count: number;
-  inc: (state: number) => void;
-  dec: (state: number) => void;
+  inc: () => void;
+  dec: () => void;
   setCount: (value: number) => void;
 }
-export const useCounter = create<Counter>((set) => ({
+
+export const useCounter = create<Counter>((set, get) => ({
   count: 1,
+
   inc: () => set((state) => ({ count: state.count + 1 })),
-  dec: () => set((state) => ({ count: state.count - 1 })),
-  setCount: (value) => set({ count: value }),
+
+  dec: () => {
+    const current = get().count;
+    if (current > 1) {
+      set({ count: current - 1 });
+    }
+  },
+
+  setCount: (value) => set({ count: value < 1 ? 1 : value }),
 }));
