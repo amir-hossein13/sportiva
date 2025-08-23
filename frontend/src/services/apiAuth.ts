@@ -1,43 +1,47 @@
 import { AuthResponse, LoginResponse, RegisterData } from '../types/User';
-import { removeToken, setToken, setUser } from '../utils/auth';
-import { apiFetch } from '../utils/apiFetch';
+import { removeToken, setToken } from '../utils/auth';
+import { apiUrl } from './config/config';
 
-// const apiUrl = import.meta.env.VITE_BASE_URL;
-
-// ثبت‌نام
 export async function register(data: RegisterData): Promise<AuthResponse> {
-  const res = await apiFetch<AuthResponse>(`/api/register`, {
+  const res = await fetch(`${apiUrl}/api/register`, {
     method: 'POST',
-    body: { ...data, role: 1 },
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ...data, role: 1 }),
   });
 
-  setToken(res.token);
-  setUser(res.username);
-  console.log('Token saved to cookie!');
-  console.log(res.username);
-  console.log(res);
+  if (!res.ok) {
+    throw new Error('Failed to register user');
+  }
 
-  return res;
+  const json: AuthResponse = await res.json();
+
+  setToken(json.token);
+
+  return json;
 }
 
-// ورود
 export async function login(email: string, password: string): Promise<LoginResponse> {
-  const res = await apiFetch<LoginResponse>(`/api/login`, {
+  const res = await fetch(`${apiUrl}/api/login`, {
     method: 'POST',
-    body: { email, password },
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
   });
 
-  setToken(res.token);
-  setUser(res.username);
-  console.log('Token saved to cookie!');
-  console.log(res.username);
-  console.log(res);
+  if (!res.ok) {
+    throw new Error('Failed to login');
+  }
 
+  const json: LoginResponse = await res.json();
 
-  return res;
+  setToken(json.token);
+
+  return json;
 }
 
-// خروج
 export function logout() {
   removeToken();
   console.log('Token deleted successfully');

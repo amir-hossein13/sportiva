@@ -11,6 +11,7 @@ const AdminPanel = lazy(() => import('../pages/dashboard/AdminPanel'));
 //route
 import siteRoutes from './siteRoutes';
 import UserPanel from '../pages/panel-user/UserPanel';
+import ProtectedRoute from '@/ui/ProtectedRoute';
 
 const routes: RouteObject[] = [
   { path: '/', element: <AppLayout />, children: siteRoutes },
@@ -18,8 +19,22 @@ const routes: RouteObject[] = [
   { path: 'register', element: <Register /> },
   { path: 'login', element: <Login /> },
 
-  { path: 'admin', element: <AdminPanel /> },
-  { path: 'user', element: <UserPanel /> },
+  {
+    path: 'admin',
+    element: (
+      <ProtectedRoute>
+        <AdminPanel />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: 'user',
+    element: (
+      <ProtectedRoute>
+        <UserPanel />
+      </ProtectedRoute>
+    ),
+  },
   // ...userRoute
 ];
 export default routes;

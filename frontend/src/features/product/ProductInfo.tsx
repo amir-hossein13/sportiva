@@ -8,6 +8,7 @@ import { useAuthStore } from '@/store/authStore';
 import { useAddCart } from '../userPanel/basket/hooks/useAddCart';
 import Spinner from '@/ui/Spinner';
 import { useState } from 'react';
+import { useUser } from '../userPanel/user/useUser';
 
 function ProductInfo() {
   const params = useParams();
@@ -17,8 +18,7 @@ function ProductInfo() {
   const { count, inc, dec } = useCounter();
   const { addCart, isPending } = useAddCart();
   const [noMore, setIsNoMore] = useState(false);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-
+  const isAuthenticated = useUser();
   if (isLoading) return <Spinner />;
 
   const { name, price, discount, finaleprice, photo, description, color, categorys } =
@@ -83,7 +83,7 @@ function ProductInfo() {
             <h4 className="text-2xl font-bold whitespace-nowrap text-red-500">
               {formatCurrency(finaleprice)}
             </h4>
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <button onClick={handleLike} aria-label="Toggle like">
                 {liked ? (
                   <HiHeart className="h-5 w-5 text-red-500" />

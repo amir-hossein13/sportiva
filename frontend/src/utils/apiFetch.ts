@@ -47,6 +47,8 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
     return null as T;
   }
 
+  
+
   const data = res.json()
   return data;
 }

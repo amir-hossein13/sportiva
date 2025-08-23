@@ -7,7 +7,7 @@ import {
 
 function UserPNavbar() {
   return (
-    <header className="bg-darkbule">
+    <header className="bg-darkBule">
       <nav className="userPanel-container user-nav">
         <div className="flex flex-row items-center">
           <h2 className="text-4xl md:text-3xl">پنل کاربری</h2>

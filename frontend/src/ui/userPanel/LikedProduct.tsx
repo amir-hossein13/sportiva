@@ -1,6 +1,7 @@
 import { HiOutlineShoppingCart, HiHeart } from 'react-icons/hi2';
 
 function LikedProduct() {
+
   return (
     <div className="w-full rounded-lg border border-gray-200 p-4">
       <div className="relative">

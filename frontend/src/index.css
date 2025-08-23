@@ -11,8 +11,8 @@
 }
 
 @theme {
-    --font-farsi: 'Vazir', sans-serif;
-    --color-darkbule: #00295f;
+    --font-farsi: 'Vazirmatn', sans-serif;
+    --color-darkBule: #00295f;
     --color-aqua: #176b87;
     --color-liteBule-300: #86B6F6;
     --color-liteBule-200: #B4D4FF;
@@ -116,9 +116,20 @@
 }
 
 .user-cart-container {
-    @apply p-5 col-span-3  row-span-5 flex flex-col rounded-xl
+    @apply p-5 col-span-2 row-span-5 flex flex-col rounded-lg
+}
+
+.admin-cart-container {
+    @apply col-span-1  rounded-lg bg-white p-5 md:col-span-5
 }
 
 .li-hover {
-    @apply rounded-lg hover:text-darkbule hover:bg-aqua transition p-2
+    @apply rounded-lg hover:text-darkBule hover:bg-aqua transition p-2
+}
+
+.admin-button-cart{
+    @apply px-4 py-2 font-semibold  transition-colors flex w-full items-center gap-2 rounded-md
+}
+.admin-button-cart-mini{
+    @apply px-4 py-2 font-semibold  transition-colors flex  items-center gap-2 rounded-md
 }

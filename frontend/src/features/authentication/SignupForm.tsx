@@ -47,6 +47,7 @@ function SignupForm() {
           {...register('password', { required: true })}
           type="password"
           placeholder="رمز عبور"
+          min={8}
         />
         {errors.password && <span className="text-liteBule-300 text-sm">password is required</span>}
       </div>

@@ -93,3 +93,50 @@ function SideIconNav() {
 }
 
 export default SideIconNav;
+
+
+
+
+
+////////////////////////////
+
+
+const onSubmit = (data: IFormInput) => {
+    const formData = new FormData();
+    formData.append('name', data.name || '');
+    formData.append('price', String(data.price ?? 0));
+    formData.append('discount', String(data.discount ?? 0));
+    formData.append('finaleprice', String(finaleprice ?? 0));
+    formData.append('color', data.color || '');
+    formData.append('description', data.description || '');
+    formData.append('quantity', String(data.quantity ?? 0));
+
+    (data.categories || []).forEach((cat) => {
+      formData.append('categories[]', String(cat));
+    });
+
+    // if data.photo is FileList (or array), pick first file
+    if (data.photo && (data.photo as FileList).length > 0) {
+      const file = (data.photo as FileList)[0];
+      console.log('file object before append:', file);
+      formData.append('photo', file);
+    } else {
+      console.log('no photo file found', data.photo);
+    }
+
+    // debug print of entries
+    for (const pair of (formData as FormData).entries()) {
+      console.log('FormData:', pair[0], pair[1]);
+    }
+
+    addProduct(formData, {
+      onSuccess: () => {
+        reset();
+        console.log('success', formData);
+      },
+      onError: (err) => {
+        console.log('error', err);
+        console.log(formData);
+      },
+    });
+  };

@@ -5,9 +5,9 @@ import TabList from './TabList';
 function UserContent() {
   return (
     <div className="userPanel-container main-content-container mt-10 max-w-7xl">
-      <div className="flex flex-col gap-5 md:flex-row md:justify-between">
+      <div className="grid gap-5 md:grid-cols-[1fr_2fr]">
         <SideBarUser />
-        <div className="flex w-full flex-col md:w-2/3">
+        <div className="flex flex-col">
           <TabList />
           <TabContent />
         </div>

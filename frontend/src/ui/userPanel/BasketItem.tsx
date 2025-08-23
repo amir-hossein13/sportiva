@@ -17,31 +17,30 @@ interface CartData {
 }
 
 function BasketItem({ item }: { item: CartData }) {
-  const { id, product_id, quantity } = item; // Renamed price to cartPrice
+  const { id, product_id, quantity } = item;
   const { isLoading, singleProduct, error } = useProductById(product_id);
   const { isDeleting, deleteItem } = useDeleteBasketItem();
   const { updateQuntity, isPending } = useUpdateQuntity();
+
   if (isLoading) return <SpinnerMini />;
+
   if (error || !singleProduct) {
     return (
-      <div className="mx-auto flex max-w-3xl items-center justify-between rounded-lg border border-gray-500 p-4">
+      <div className="flex w-full items-center justify-between rounded-lg border border-red-400 bg-red-50 p-4">
         <p className="text-red-500">خطا در بارگذاری محصول: {error?.message || 'محصول یافت نشد'}</p>
       </div>
     );
   }
-  function handelDelete() {
-    deleteItem(id);
-  }
 
   const { name, price, discount, finaleprice, photo, color } = singleProduct;
 
-  console.log(item);
   return (
-    <div className="mx-auto flex max-w-3xl items-center justify-between rounded-lg border border-gray-500 p-4">
+    <div className="flex w-full items-center justify-between rounded-lg border border-gray-300 p-4">
+      {/* Product Info */}
       <div className="flex items-center gap-4">
-        <div className="h-16 w-16 rounded bg-gray-400">
+        <div className="h-16 w-16 overflow-hidden rounded bg-gray-200">
           {photo ? (
-            <img src={photo} alt={name} className="h-full w-full rounded object-cover" />
+            <img src={photo} alt={name} className="h-full w-full object-cover" />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-gray-500">
               بدون تصویر
@@ -57,7 +56,7 @@ function BasketItem({ item }: { item: CartData }) {
           <div className="mt-1 flex items-center gap-2">
             {discount ? (
               <>
-                <span className="text-liteBule-100 w-10 rounded-lg bg-red-500 p-1 text-sm">
+                <span className="rounded bg-red-500 px-2 py-0.5 text-sm text-white">
                   {discount}%
                 </span>
                 <p className="text-lg font-semibold text-cyan-700">{formatCurrency(finaleprice)}</p>
@@ -70,29 +69,30 @@ function BasketItem({ item }: { item: CartData }) {
         </div>
       </div>
 
+      {/* Actions */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
           <button
             disabled={isPending || quantity <= 1}
             onClick={() => updateQuntity({ id, quantity: quantity - 1 })}
-            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-blue-200 text-blue-600"
+            className="flex h-8 w-8 items-center justify-center rounded border border-blue-200 text-blue-600 disabled:opacity-50"
           >
             <HiMiniMinus className="h-4 w-4" />
           </button>
           <span className="text-sm font-medium text-gray-700">{quantity}</span>
           <button
-            disabled={isPending || quantity <= 4}
+            disabled={isPending || quantity >= 4}
             onClick={() => updateQuntity({ id, quantity: quantity + 1 })}
-            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-blue-200 text-blue-600"
+            className="flex h-8 w-8 items-center justify-center rounded border border-blue-200 text-blue-600 disabled:opacity-50"
           >
             <HiMiniPlus className="h-4 w-4" />
           </button>
         </div>
 
         <button
-          className="cursor-pointer text-red-500 hover:text-red-700"
+          className="text-red-500 hover:text-red-700 disabled:opacity-50"
           disabled={isDeleting}
-          onClick={handelDelete}
+          onClick={() => deleteItem(id)}
         >
           <HiOutlineTrash className="h-5 w-5" />
         </button>
@@ -100,5 +100,6 @@ function BasketItem({ item }: { item: CartData }) {
     </div>
   );
 }
+
 
 export default BasketItem;

@@ -1,27 +1,32 @@
-import MiniCart from './MiniCart';
+import { useBasket } from '@/features/userPanel/basket/hooks/useBaket';
 import { HiOutlineBell, HiOutlineHeart, HiOutlineShoppingCart } from 'react-icons/hi2';
+import MiniCart from './MiniCart';
+import SpinnerMini from '../SpinnerMini';
+import SuggestedProduct from './SuggestedProduct';
 
 function OverviewContent() {
+  const { isLoading, cartList } = useBasket();
+  if (isLoading) return <SpinnerMini />;
   return (
-    <div className="mt-3 grid grid-rows-5 gap-5 md:grid-cols-9">
+    <div className="mt-3 grid gap-5 md:grid-cols-9">
       <MiniCart
-        title="کالاهای سبدخرید"
-        count={12}
-        icon={<HiOutlineShoppingCart className="text-aqua w-5 h-5" />}
+        title="کالاهای سبد خرید"
+        count={cartList.length}
+        icon={<HiOutlineShoppingCart className="text-aqua h-5 w-5" />}
       />
       <MiniCart
-        title="تعداد علاقه مندی ها"
-        count={12}
-        icon={<HiOutlineHeart className="text-aqua w-5 h-5" />}
+        title="تعداد علاقه‌مندی‌ها"
+        count={5}
+        icon={<HiOutlineHeart className="text-aqua h-5 w-5" />}
       />
       <MiniCart
-        title="تیکت های خوانده نشده"
-        count={12}
-        icon={<HiOutlineBell className="text-aqua w-5 h-5" />}
+        title="تیکت‌های خوانده نشده"
+        count={2}
+        icon={<HiOutlineBell className="text-aqua h-5 w-5" />}
       />
-      <div className="col-span-9 h-120 rounded-lg bg-white p-5">
-        <h2 className="text-darkbule text-3xl font-semibold md:text-2xl">کالاهای پیشنهادی</h2>
-      </div>
+
+      {/* Suggested products */}
+      <SuggestedProduct />
     </div>
   );
 }

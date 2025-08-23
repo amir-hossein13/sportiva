@@ -1,4 +1,5 @@
 export interface ProductData {
+  categories:number[];
   id: number;
   name: string;
   price: number;
@@ -7,6 +8,6 @@ export interface ProductData {
   photo: string;
   color: string;
   description?: string;
-  confirmed: boolean;
+  confirmed?: boolean;
   quantity: number;
 }

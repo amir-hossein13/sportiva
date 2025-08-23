@@ -1,8 +1,11 @@
 import { apiFetch } from '@/utils/apiFetch';
-import { apiUrl } from './config/config';
-import { getToken } from '@/utils/auth';
+type EditUser = {
+  username: string;
+  address: string;
+  profile: string;
+};
 
-export function updateUser({ username, address, profile }) {
+export function editUser({ username, address, profile }: EditUser) {
   return apiFetch('/api/user/update', {
     method: 'POST',
     auth: true,
@@ -10,13 +13,8 @@ export function updateUser({ username, address, profile }) {
   });
 }
 
-export async function getCurrentUser() {
-  const res = await fetch(`${apiUrl}/api/user/get_info`, {
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${getToken()}`,
-    },
+export function getCurrentUser() {
+  return apiFetch('/api/user/get_info', {
+    auth: true,
   });
-  const data = await res.json();
-  return data
 }

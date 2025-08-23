@@ -6,6 +6,6 @@ export const deleteUser = (id: number) => {
     method: "DELETE",
   });
 };
-export const getUser = () => {
+export const getAllUser = () => {
   return apiFetch<RegisterData[]>(`/api/users`);
 };
