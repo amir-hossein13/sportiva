@@ -32,6 +32,6 @@ function Header() {
       <NavBar />
     </div>
   );
-}
+};
 
 export default Header;

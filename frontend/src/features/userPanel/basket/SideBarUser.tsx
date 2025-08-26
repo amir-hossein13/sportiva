@@ -10,7 +10,6 @@ function SideBarUser() {
   const { isLoading, user } = useUser();
 
   if (isLoading) return <SpinnerMini />;
- 
 
   const { username, email, phone, address, avatar } = user;
 
@@ -20,7 +19,7 @@ function SideBarUser() {
         <div className="flex flex-col items-center justify-center">
           <div>
             <img
-              className="border-lightBlue-200 w-32 rounded-full "
+              className="border-lightBlue-200 w-32 rounded-full"
               src={avatar || '/img/amirlogo.png'}
               alt="user logo"
             />
@@ -48,6 +47,5 @@ function SideBarUser() {
     </div>
   );
 }
-
 
 export default SideBarUser;

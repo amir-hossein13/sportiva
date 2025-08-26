@@ -1,13 +1,18 @@
-import { AdminApplyAll, ApplyAdmin } from "../types/Admin";
-import { apiFetch, getAuthHeaders } from "../utils/api";
+import { getToken } from '@/utils/auth';
+import { AdminApplyAll, ApplyAdmin } from '../types/Admin';
+import { apiFetch, getAuthHeaders } from '../utils/api';
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
-export const getIsOwner = () => {
-  return apiFetch<{ isOwner: boolean }>(`${apiUrl}/api/is_owner`, {
-    headers: getAuthHeaders(),
+export async function getIsOwner() {
+  const res = await fetch('/api/is-owner', {
+    headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
   });
-};
+  if (!res.ok) throw new Error('Failed to check owner');
+  console.log(res);
+  return res.json();
+}
+
 export const getIsCreator = () => {
   return apiFetch<{ isCreator: boolean }>(`${apiUrl}/api/is_creator`, {
     headers: getAuthHeaders(),
@@ -16,7 +21,7 @@ export const getIsCreator = () => {
 
 export const postApply = () => {
   return apiFetch<ApplyAdmin>(`${apiUrl}/api/apply`, {
-    method: "POST",
+    method: 'POST',
     headers: getAuthHeaders(),
   });
 };
@@ -29,14 +34,14 @@ export const getAllApply = () => {
 
 export const deleteApplyFail = () => {
   return apiFetch<{ success: boolean }>(`${apiUrl}/api/apply/fail`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: getAuthHeaders(),
   });
 };
 
 export const postApplyVerify = () => {
   return apiFetch<unknown>(`${apiUrl}/api/apply/all`, {
-    method: "POST",
+    method: 'POST',
     headers: getAuthHeaders(),
   });
 };

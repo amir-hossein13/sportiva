@@ -4,8 +4,8 @@ import { useLogin } from './hooks/useLogin';
 import React, { useState } from 'react';
 
 function Login() {
-  const [email, setEmail] = useState('amirattarnia7@gmail.com');
-  const [password, setPassword] = useState('amir1386');
+  const [email, setEmail] = useState('xawoma2686@ahanim.com');
+  const [password, setPassword] = useState('12345678910');
   const { login, isPending } = useLogin();
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

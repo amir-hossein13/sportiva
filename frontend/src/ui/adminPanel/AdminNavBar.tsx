@@ -18,7 +18,7 @@ function AdminNavBar() {
           <div className="li-hover flex flex-row items-center justify-center gap-5">
             <h3 className="text-lg font-semibold text-white">admin</h3>
             <div className="w-10">
-              <img className="w-full rounded-full" src="/img/amirlogo.png" alt="" />
+              <img className="w-full rounded-full" src="ِ/img/amirlogo.png" alt="" />
             </div>
           </div>
         </ul>

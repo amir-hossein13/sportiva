@@ -7,7 +7,7 @@ type NavItemProps = {
 
 function NavItem({ children, icon }: NavItemProps) {
   return (
-    <div className="flex justify-between items-center gap-2  ">
+    <div className="flex cursor-pointer items-center justify-between gap-2">
       <div className="text-liteBule-300">{icon}</div>
       <button className="text-darkbule font-bold">{children}</button>
     </div>

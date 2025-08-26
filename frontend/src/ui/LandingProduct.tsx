@@ -10,7 +10,6 @@ function LandingProduct() {
   const [visibleCount, setVisibleCount] = useState(8);
 
   if (isLoading) return <SpinnerMini />;
-
   return (
     <section className="fade-in container mx-auto my-10 flex flex-col items-center px-4 py-10">
       {/* Section Title */}
@@ -19,11 +18,15 @@ function LandingProduct() {
       </div>
 
       {/* Products Grid */}
-      <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {products.slice(0, visibleCount).map((product) => (
-          <ProductItem products={product} key={product.id} />
-        ))}
-      </div>
+      {products.length === 0 ? (
+        <Title>کالایی موجود نمی باشد</Title>
+      ) : (
+        <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {products.slice(0, visibleCount).map((product) => (
+            <ProductItem products={product} key={product.id} />
+          ))}
+        </div>
+      )}
 
       {/* Show More Button */}
       {products.length > visibleCount && (

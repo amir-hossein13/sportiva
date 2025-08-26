@@ -8,11 +8,13 @@ export async function register(data: RegisterData): Promise<AuthResponse> {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ ...data, role: 1 }),
+    body: JSON.stringify(data),
   });
 
   if (!res.ok) {
-    throw new Error('Failed to register user');
+    const errorText = await res.text();
+    console.error('Register failed:', res.status, errorText);
+    throw new Error(`Failed to register user: ${res.status}`);
   }
 
   const json: AuthResponse = await res.json();
@@ -32,7 +34,9 @@ export async function login(email: string, password: string): Promise<LoginRespo
   });
 
   if (!res.ok) {
-    throw new Error('Failed to login');
+    const errorText = await res.text();
+    console.error('Register failed:', res.status, errorText);
+    throw new Error(`Failed to register user: ${res.status}`);
   }
 
   const json: LoginResponse = await res.json();

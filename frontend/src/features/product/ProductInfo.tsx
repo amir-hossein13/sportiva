@@ -4,7 +4,6 @@ import { useProductById } from './useProduct';
 import { formatCurrency } from '@/utils/helper';
 import { useLikeStore } from '@/store/likeStore';
 import { useCounter } from '@/store/productCountStore';
-import { useAuthStore } from '@/store/authStore';
 import { useAddCart } from '../userPanel/basket/hooks/useAddCart';
 import Spinner from '@/ui/Spinner';
 import { useState } from 'react';
@@ -99,7 +98,7 @@ function ProductInfo() {
             <button
               onClick={handleAddToCart}
               disabled={isPending || noMore}
-              className="text-liteBule-100 bg-darkbule pointer-events-auto z-10 w-1/2 cursor-pointer rounded-xl px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="text-liteBule-100 bg-darkBule pointer-events-auto z-10 w-1/2 cursor-pointer rounded-xl px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isPending ? 'در حال افزودن...' : ''}
               {noMore ? 'موجود در سبد خرید' : 'سفارش'}

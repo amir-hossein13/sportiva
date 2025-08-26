@@ -14,9 +14,13 @@ function SignupForm() {
   } = useForm<RegisterData>();
   const { signup, isPending } = useSignup();
   const onSubmit = (data: RegisterData) => {
-    signup(data, {
+    signup({...data,role:1}, {
       onSuccess: () => {
+        console.log(data);
         reset();
+      },
+      onError: (err) => {
+        console.log(err, data);
       },
     });
   };
@@ -31,7 +35,7 @@ function SignupForm() {
           type="text"
           placeholder="نام و نام خانوادگی"
         />
-        <Input {...register('phone', { required: true })} type="number" placeholder="شماره" />
+        <Input {...register('phone', { required: true })} type="text" placeholder="شماره" />
         {errors.username && <span className="text-liteBule-300 text-sm">Name is required</span>}
         <Input {...register('email', { required: true })} type="email" placeholder="ایمیل" />
         {errors.email && <span className="text-liteBule-300 text-sm">email is required</span>}
@@ -44,10 +48,9 @@ function SignupForm() {
         {errors.address && <span className="text-liteBule-300 text-sm">address is required</span>}
 
         <Input
-          {...register('password', { required: true })}
+          {...register('password', { required: true, minLength: 8 })}
           type="password"
           placeholder="رمز عبور"
-          min={8}
         />
         {errors.password && <span className="text-liteBule-300 text-sm">password is required</span>}
       </div>

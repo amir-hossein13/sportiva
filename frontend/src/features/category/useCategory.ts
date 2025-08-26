@@ -1,4 +1,4 @@
-import { getCategories } from '@/services/apiCategory';
+import { getCategories, getCategoriesById } from '@/services/apiCategory';
 import { useQuery } from '@tanstack/react-query';
 
 export function useCategory() {
@@ -7,4 +7,12 @@ export function useCategory() {
     queryFn: getCategories,
   });
   return { isLoading, categories };
+}
+
+export function useCategoryById(id: number) {
+  const { isLoading, data: category } = useQuery({
+    queryKey: ['singleProduct'],
+    queryFn: () => getCategoriesById(id),
+  });
+  return { isLoading, category };
 }

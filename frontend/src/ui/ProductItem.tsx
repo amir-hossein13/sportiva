@@ -51,7 +51,7 @@ function ProductItem({ products }: Props) {
           {/* Order Button */}
           <Link
             to={`/product/${id}`}
-            className="bg-liteBule-300 block w-full rounded-xl px-4 py-2 text-center text-sm text-white transition-colors duration-200 hover:bg-blue-600"
+            className="bg-darkBule block w-full rounded-xl px-4 py-2 text-center text-sm text-white transition-colors duration-200 hover:bg-blue-700"
           >
             سفارش
           </Link>
