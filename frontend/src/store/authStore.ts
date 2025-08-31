@@ -21,7 +21,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: () => set({ token: null, isLoggedIn: false, isOwner: null }),
   checkOwner: async () => {
     try {
-      const { isOwner } = await getIsOwner();
+      const isOwner = await getIsOwner();
       set({ isOwner });
     } catch (error) {
       console.error('Error checking owner:', error);

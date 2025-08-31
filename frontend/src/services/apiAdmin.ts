@@ -1,16 +1,15 @@
 import { getToken } from '@/utils/auth';
 import { AdminApplyAll, ApplyAdmin } from '../types/Admin';
 import { apiFetch, getAuthHeaders } from '../utils/api';
-
-const apiUrl = import.meta.env.VITE_BASE_URL;
+import { apiUrl } from './config/config';
 
 export async function getIsOwner() {
-  const res = await fetch('/api/is-owner', {
+  const res = await fetch(`${apiUrl}/api/is-owner`, {
     headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
   });
   if (!res.ok) throw new Error('Failed to check owner');
-  console.log(res);
-  return res.json();
+
+  return res.status === 200;
 }
 
 export const getIsCreator = () => {

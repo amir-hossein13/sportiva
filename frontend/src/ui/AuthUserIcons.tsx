@@ -1,20 +1,30 @@
+// AuthUserIcons.tsx
+import { useEffect } from 'react'; // Add this import
 import { useUser } from '@/features/userPanel/user/useUser';
 import { useAuthStore } from '@/store/authStore';
-// import { HiOutlineUser } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import SpinnerMini from './SpinnerMini';
 
 function AuthUserIcons() {
-  const isOwner = useAuthStore((state) => state.isOwner);
+  const { isLoggedIn, checkOwner, isOwner } = useAuthStore();
   const { isLoading, user } = useUser();
-  if (isLoading) return <SpinnerMini />;
-  const { username, avatar } = user;
+
+  useEffect(() => {
+    if (isLoggedIn && isOwner === null) {
+      checkOwner();
+    }
+  }, [isLoggedIn, isOwner, checkOwner]);
+
+  if (isLoading || (isLoggedIn && isOwner === null)) return <SpinnerMini />;
+
+  const { username, avatar } = user || {};
+  console.log(isOwner);
   return (
     <div className="flex flex-row gap-5">
       {isOwner ? (
         <Link to="/admin">
           <div className="flex flex-row items-center justify-center gap-5">
-            <h3 className="text-lg font-semibold text-black">{username}</h3>
+            <h3 className="text-lg font-semibold text-black">hello {username} </h3>
             <div className="w-10">
               <img
                 className="w-full rounded-full"
