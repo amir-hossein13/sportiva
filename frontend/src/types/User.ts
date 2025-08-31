@@ -12,6 +12,7 @@ export interface AuthResponse {
   username:AuthUser;
 }
 export interface LoginResponse {
+  user(arg0: string[], user: any): unknown;
   token: string;
   username:AuthUser; 
 }

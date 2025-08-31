@@ -7,9 +7,9 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "baseUrl": ".",           // tells TypeScript the root path
+    "baseUrl": ".", // tells TypeScript the root path
     "paths": {
-      "@/*": ["src/*"]        // maps @ to the src folder
+      "@/*": ["src/*"] // maps @ to the src folder
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -24,7 +24,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "noPropertyAccessFromIndexSignature": false
   },
   "include": ["src"]
 }

@@ -7,7 +7,7 @@ export interface Category {
   name: string;
 }
 
-export const addCategory = async (category: Pick<Category, 'name'>): Promise<Category> => {
+export const addCategory = async (category: Pick<Category, 'name'>): Promise<string> => {
   const res = await fetch(`${apiUrl}/api/category/create`, {
     method: 'POST',
     headers: {
@@ -21,8 +21,10 @@ export const addCategory = async (category: Pick<Category, 'name'>): Promise<Cat
     throw new Error(`Failed to add category: ${res.status}`);
   }
 
-  return res;
+  const data = await res.text();
+  return data;
 };
+
 
 export const deleteCategory = async (id: number): Promise<void> => {
   const res = await fetch(`${apiUrl}/api/category/delete/${id}`, {
