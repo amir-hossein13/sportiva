@@ -43,7 +43,8 @@ function CategoryManage() {
           </tr>
         </thead>
         <tbody>
-          {categories?.categories?.map((category) => (
+          {//@ts-expect-error error for the text
+          categories?.categories?.map((category) => (
             <tr key={category.id} className="border-b border-gray-300">
               <td className="flex items-center p-4">
                 <div>

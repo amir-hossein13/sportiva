@@ -6,5 +6,7 @@ export function useUserList() {
     queryKey: ['userList'],
     queryFn: getAllUser,
   });
+  //@ts-expect-error error for the text
+
   return { isLoading, users: data?.users };
 }

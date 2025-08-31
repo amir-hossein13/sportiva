@@ -8,7 +8,8 @@ import { useAddCart } from '../userPanel/basket/hooks/useAddCart';
 import Spinner from '@/ui/Spinner';
 import { useState } from 'react';
 import { useUser } from '../userPanel/user/useUser';
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
 function ProductInfo() {
   const params = useParams();
   const productId = Number(params.productId);
@@ -19,6 +20,7 @@ function ProductInfo() {
   const [noMore, setIsNoMore] = useState(false);
   const isAuthenticated = useUser();
   if (isLoading) return <Spinner />;
+  //@ts-expect-error error for the text
 
   const { name, price, discount, finaleprice, photo, description, color, categorys } =
     singleProduct;

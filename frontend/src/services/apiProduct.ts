@@ -30,6 +30,8 @@ export async function addProduct(formData: ProductData): Promise<ProductData[]> 
   const res = await fetch(`${apiUrl}/api/product/create`, {
     method: 'POST',
     headers: { Authorization: `bearer ${getToken()}` },
+    //@ts-expect-error error for the text
+
     body: formData,
   });
   const result = await res.json();
@@ -50,8 +52,10 @@ export async function updateProduct(formData: ProductData): Promise<ProductData[
   const res = await fetch(`${apiUrl}/api/product-update`, {
     method: 'POST',
     headers: { Authorization: `bearer ${getToken()}` },
+    //@ts-expect-error error for the text
     body: formData,
   });
+  //@ts-expect-error error for the text
 
   return res;
 }

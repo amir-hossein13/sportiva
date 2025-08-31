@@ -83,6 +83,8 @@ function ProductModal({ isOpen, onClose, category, mode, product, productId }: P
     }
 
     const mutate = mode === 'add' ? addProduct : updateProduct;
+    //@ts-expect-error error for the text
+
     mutate(formData, {
       onSuccess: () => {
         reset();

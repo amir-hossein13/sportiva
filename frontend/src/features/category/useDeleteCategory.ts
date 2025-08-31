@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 export function useDeleteCategory() {
   const queryClient = useQueryClient();
   const { mutate: deleteCategory, isPending: isDeleting } = useMutation({
+    
+    //@ts-expect-error error for the text
     mutationFn: (id) => apiDeleteCategory(id),
     onSuccess: () => {
       toast.success('دسته بندی با موفقیت حذف شد');

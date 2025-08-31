@@ -101,5 +101,4 @@ function BasketItem({ item }: { item: CartData }) {
   );
 }
 
-
 export default BasketItem;

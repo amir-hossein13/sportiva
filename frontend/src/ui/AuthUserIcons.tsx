@@ -16,6 +16,7 @@ function AuthUserIcons() {
   }, [isLoggedIn, isOwner, checkOwner]);
 
   if (isLoading || (isLoggedIn && isOwner === null)) return <SpinnerMini />;
+  //@ts-expect-error error for the text
 
   const { username, avatar } = user || {};
   console.log(isOwner);

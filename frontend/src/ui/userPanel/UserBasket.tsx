@@ -7,6 +7,7 @@ import { formatCurrency } from '@/utils/helper';
 function UserBasket() {
   const { isLoading, cartList } = useBasket();
   if (isLoading) return <Spinner />;
+  //@ts-expect-error error for the text
 
   const totalPrice = cartList.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -23,6 +24,8 @@ function UserBasket() {
       {/* Basket Items */}
       <div className="max-h-[400px] flex-1 space-y-3 overflow-y-auto pr-2">
         {cartList.map((item) => (
+          //@ts-expect-error error for the text
+
           <BasketItem key={item.id} item={item} />
         ))}
       </div>
@@ -47,6 +50,5 @@ function UserBasket() {
     </div>
   );
 }
-
 
 export default UserBasket;

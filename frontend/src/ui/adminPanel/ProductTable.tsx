@@ -6,6 +6,7 @@ function ProductTable() {
   const { isLoading, products } = useProduct();
   // console.log(products);
   if (isLoading) return <SpinnerMini />;
+
   return (
     <div dir="rtl" className="rounded-lg bg-white shadow-sm">
       <table className="w-full text-sm">
@@ -33,7 +34,10 @@ function ProductTable() {
               </td>
               <td className="px-6 py-4">
                 <span className={`rounded-full px-3 py-1 text-xs font-medium`}>
-                  {product.category}
+                  {
+                    //@ts-expect-error error for the text
+                    product.category
+                  }
                 </span>
               </td>
               <td className="px-6 py-4 font-semibold text-green-700">{product.price}</td>

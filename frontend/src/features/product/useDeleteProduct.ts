@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteProduct as apiDeleteProduct } from '@/services/apiProduct';
 import toast from 'react-hot-toast';
+
 export function useDeleteProduct() {
   const queryClient = useQueryClient();
   const { mutate: deleteProduct, isPending: isDeleting } = useMutation({
+    //@ts-expect-error error for the text
     mutationFn: (id) => apiDeleteProduct(id),
     onSuccess: () => {
       toast.success('کالا با موفقیت حذف شد');

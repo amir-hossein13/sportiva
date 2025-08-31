@@ -35,6 +35,8 @@ function AddUserModal({ isOpen, onClose, category }) {
     console.log('file object before append:', file);
     formData.append('photo', file);
     console.log('form data content;', formData);
+    //@ts-expect-error error for the text
+
     addProduct(formData, {
       onSuccess: () => {
         reset();

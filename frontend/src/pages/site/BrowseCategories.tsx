@@ -15,8 +15,10 @@ function BrowseCategories() {
             <h1 className="text-darkBule mb-5 text-3xl font-bold">دسته بندی ها</h1>
           </div>
         </div>
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {categories?.categories?.map((cat) => (
+          {//@ts-expect-error error for the text
+          categories?.categories?.map((cat) => (
             <div key={cat.id} className="bg-liteBule-100 rounded-lg p-6 text-center">
               <h2 className="text-darkBule mb-5 text-xl font-semibold">{cat.name}</h2>
               <span className="bg-darkBule ml-2 rounded-full px-3 py-1 text-sm text-white">

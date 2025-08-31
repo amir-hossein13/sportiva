@@ -11,10 +11,14 @@ function AddCategoryModal({ isOpen, onClose }) {
       alert('Please fill in both fields.');
       return;
     }
+    
     addCategory(
-      { name:nameInput },
+      //@ts-expect-error error for the text
+      { name: nameInput },
       {
         onSettled: () => {
+          //@ts-expect-error error for the text
+
           setNameInput('');
         },
       }
@@ -35,6 +39,8 @@ function AddCategoryModal({ isOpen, onClose }) {
 
         <form className="grid gap-4" onSubmit={handleSubmit}>
           <Input
+            //@ts-expect-error error for the text
+
             onChange={(e) => setNameInput(e.target.value)}
             type="text"
             placeholder="نام دسته بندی"

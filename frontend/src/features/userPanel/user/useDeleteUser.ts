@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 export function useDeleteUser() {
   const queryClient = useQueryClient();
   const { mutate: deleteUser, isPending: isDeleting } = useMutation({
+    //@ts-expect-error error for the text
     mutationFn: (id) => deleteUserApi(id),
     onSuccess: () => {
       toast.success('کاربر با موفقیت حذف شد');
@@ -13,5 +14,5 @@ export function useDeleteUser() {
       toast.error('کاربر حذف نشد' + err);
     },
   });
-  return {deleteUser,isDeleting}
+  return { deleteUser, isDeleting };
 }

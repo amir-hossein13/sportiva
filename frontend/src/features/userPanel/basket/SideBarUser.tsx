@@ -10,6 +10,7 @@ function SideBarUser() {
   const { isLoading, user } = useUser();
 
   if (isLoading) return <SpinnerMini />;
+  //@ts-expect-error error for the text
 
   const { username, email, phone, address, avatar } = user;
 

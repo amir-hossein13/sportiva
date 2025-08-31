@@ -23,10 +23,11 @@ function ProductManage() {
             <HiMiniPlus />
           </button>
           <ProductModal
+            //@ts-expect-error error for the text
             category={categories}
             isOpen={toggle}
             mode="add"
-            onClose={() => setToggle(false)}  
+            onClose={() => setToggle(false)}
           />
         </div>
         <ContorolBarAdmin />

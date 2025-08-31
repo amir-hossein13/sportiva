@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateUser as apiUser } from '@/services/apiUser';
+import { editUser as apiUser } from '@/services/apiUser';
 import toast from 'react-hot-toast';
 export function useUpdateUser() {
   const queryClient = useQueryClient();
