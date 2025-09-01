@@ -19,7 +19,7 @@ function Category() {
   console.log(category);
   return (
     <div>
-      <div className="md:container md:mx-auto pt-10">
+      <div className="container mx-auto px-4 pt-10">
         <div className="mx-auto max-w-7xl">
           <div className="mb-4 flex items-center justify-between">
             <div>
