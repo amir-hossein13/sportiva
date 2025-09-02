@@ -14,7 +14,7 @@ function SuggestedProduct() {
     .slice(0, 5); // get first 5
 
   return (
-    <div className="col-span-9 rounded-lg bg-white p-5">
+    <div className="sm:col-span-9 rounded-lg bg-white p-5">
       <h2 className="text-darkBlue mb-4 text-3xl font-semibold md:text-2xl">کالاهای پیشنهادی</h2>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
         {randomProducts.map((product) => (

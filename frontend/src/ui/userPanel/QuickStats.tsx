@@ -5,7 +5,7 @@ export default function QuickStats({
   memberSince = 'Jan 2023',
 }) {
   return (
-    <div className="col-span-1 rounded-2xl bg-white p-6 shadow">
+    <div className="col-span-1 rounded-2xl bg-white p-6 shadow sm:mb-5 lg:mb-0">
       {/* Header */}
       <h2 className="mb-4 text-xl font-semibold text-blue-900">{title}</h2>
 

@@ -104,7 +104,7 @@
 }
 
 .userPanel-container {
-    @apply py-6 px-10
+  @apply container mx-auto ;
 }
 
 .user-nav {
@@ -112,7 +112,7 @@
 }
 
 .main-content-container {
-    @apply lg:container lg:mx-auto
+    @apply container mx-auto
 }
 
 .user-cart-container {

@@ -3,7 +3,6 @@ import { HiMiniMinus, HiMiniPlus, HiOutlineTrash } from 'react-icons/hi2';
 import SpinnerMini from '../SpinnerMini';
 import { formatCurrency } from '@/utils/helper';
 import { useDeleteBasketItem } from '@/features/userPanel/basket/hooks/useDeleteBasketItem';
-import { useCounter } from '@/store/productCountStore';
 import { useUpdateQuntity } from '@/features/userPanel/basket/hooks/useUpdateQuntity';
 
 interface CartData {

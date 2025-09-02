@@ -4,9 +4,13 @@ import Footer from '../../ui/footer/Footer';
 
 function AppLayout() {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <Outlet />
+
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
       <Footer />
     </div>
   );

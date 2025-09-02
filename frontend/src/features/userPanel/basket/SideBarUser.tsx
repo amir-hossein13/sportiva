@@ -8,14 +8,11 @@ import SpinnerMini from '../../../ui/SpinnerMini';
 function SideBarUser() {
   const [toggle, setToggle] = useState(false);
   const { isLoading, user } = useUser();
-
   if (isLoading) return <SpinnerMini />;
   //@ts-expect-error error for the text
-
   const { username, email, phone, address, avatar } = user;
-
   return (
-    <div className="grid w-full grid-cols-1 gap-5">
+    <div className="grid w-full grid-cols-1 gap-5 ">
       <div className="col-span-1 flex flex-col rounded-md bg-white px-10 py-15">
         <div className="flex flex-col items-center justify-center">
           <div>
@@ -39,7 +36,7 @@ function SideBarUser() {
         <UserEditModal isOpen={toggle} onClose={() => setToggle(false)} />
 
         <div className="mt-4 flex flex-col gap-5 text-end">
-          <h3 className="text-xl text-gray-600">{email}</h3>
+          <h3 className="text-xl text-gray-600 md:text-sm">{email}</h3>
           <h3 className="text-xl text-gray-600">{phone}</h3>
           <h3 className="text-xl text-gray-600">{address}</h3>
         </div>

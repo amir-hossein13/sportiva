@@ -7,24 +7,22 @@ import {
 
 function UserPNavbar() {
   return (
-    <header className="bg-darkBule">
-      <nav className="userPanel-container user-nav">
-        <div className="flex flex-row items-center">
-          <h2 className="text-4xl md:text-3xl">پنل کاربری</h2>
-        </div>
-        <ul className="flex gap-5">
-          <li className="li-hover">
-            <HiOutlineArrowRightStartOnRectangle className="w-10 text-2xl" />
-          </li>
+    <header className="bg-darkBule text-white">
+      <nav className="userPanel-container flex flex-wrap items-center justify-between p-4">
+        <h2 className="text-2xl font-bold sm:text-3xl">پنل کاربری</h2>
 
+        <ul className="mt-3 flex w-full justify-around gap-5 sm:mt-0 sm:w-auto sm:justify-end">
           <li className="li-hover">
-            <HiOutlineBell className="w-10 text-2xl" />
+            <HiOutlineArrowRightStartOnRectangle className="h-6 w-6 sm:h-7 sm:w-7" />
           </li>
           <li className="li-hover">
-            <HiOutlineShoppingCart className="w-10 text-2xl" />
+            <HiOutlineBell className="h-6 w-6 sm:h-7 sm:w-7" />
           </li>
           <li className="li-hover">
-            <HiOutlineHeart className="w-10 text-2xl" />
+            <HiOutlineShoppingCart className="h-6 w-6 sm:h-7 sm:w-7" />
+          </li>
+          <li className="li-hover">
+            <HiOutlineHeart className="h-6 w-6 sm:h-7 sm:w-7" />
           </li>
         </ul>
       </nav>

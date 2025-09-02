@@ -8,8 +8,7 @@ import { useAddCart } from '../userPanel/basket/hooks/useAddCart';
 import Spinner from '@/ui/Spinner';
 import { useState } from 'react';
 import { useUser } from '../userPanel/user/useUser';
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
 function ProductInfo() {
   const params = useParams();
   const productId = Number(params.productId);
@@ -19,9 +18,9 @@ function ProductInfo() {
   const { addCart, isPending } = useAddCart();
   const [noMore, setIsNoMore] = useState(false);
   const isAuthenticated = useUser();
-  if (isLoading) return <Spinner />;
-  //@ts-expect-error error for the text
 
+  if (isLoading) return <Spinner />;
+  //@ts-expect-error idk
   const { name, price, discount, finaleprice, photo, description, color, categorys } =
     singleProduct;
 
@@ -35,37 +34,33 @@ function ProductInfo() {
   }
 
   return (
-    <>
-      <div className="flex gap-2">
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-wrap items-center gap-1 text-sm text-gray-500">
         <h6>دسته بندی</h6>
-        <HiChevronLeft />
+        <HiChevronLeft className="inline" />
         <h6>{categorys?.[0]?.name}</h6>
-        <HiChevronLeft />
-        <h6>{name}</h6>
+        <HiChevronLeft className="inline" />
+        <h6 className="max-w-xs truncate">{name}</h6>
       </div>
-      <div className="flex flex-col flex-wrap items-center sm:flex-row sm:justify-between">
-        <div className="mb-10 sm:w-1/2">
-          <img src={photo} alt={name} />
+
+      <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between">
+        <div className="flex w-full justify-center sm:w-1/2">
+          <img
+            src={photo}
+            alt={name}
+            className="h-auto w-full max-w-md rounded-lg object-contain"
+          />
         </div>
-        <div className="flex flex-col gap-5 sm:w-1/2">
-          <h4 className="text-4xl font-bold whitespace-nowrap md:whitespace-break-spaces">
-            {name}
-          </h4>
-          <p className="text-sm text-gray-500">{description}</p>
-          <div className="flex flex-col gap-5">
+
+        <div className="flex w-full flex-col gap-5 sm:w-1/2">
+          <h4 className="line-clamp-2 text-3xl font-bold break-words md:text-4xl">{name}</h4>
+          <p className="line-clamp-4 text-sm text-gray-500">{description}</p>
+
+          <div className="flex flex-col gap-3">
+
+
             <select
-              className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
-              name="size"
-              id="size"
-              defaultValue=""
-            >
-              <option value="" className="text-gray-300" disabled hidden>
-                انتخاب سایز
-              </option>
-              {/* Add size options dynamically if available */}
-            </select>
-            <select
-              className="w-full rounded-lg border border-gray-400 text-right text-gray-500"
+              className="w-full rounded-lg border border-gray-400 p-2 text-right text-gray-500"
               name="color"
               id="color"
               defaultValue=""
@@ -73,39 +68,44 @@ function ProductInfo() {
               <option value="" className="text-gray-300" disabled hidden>
                 انتخاب رنگ
               </option>
-              <option value={color}>{color}</option>
+              {color && <option value={color}>{color}</option>}
             </select>
           </div>
-          {discount ? (
-            <span className="text-liteBule-100 w-10 rounded-lg bg-red-500 p-1">{discount}%</span>
-          ) : null}
-          <div className="mt-3 flex justify-between">
-            <h4 className="text-2xl whitespace-nowrap line-through">{formatCurrency(price)}</h4>
-            <h4 className="text-2xl font-bold whitespace-nowrap text-red-500">
-              {formatCurrency(finaleprice)}
-            </h4>
+
+          <div className="flex items-center gap-3">
+            {discount && (
+              <span className="rounded-lg bg-red-500 px-2 py-1 text-sm text-white">
+                {discount}%
+              </span>
+            )}
+            <h4 className="text-2xl text-gray-400 line-through">{formatCurrency(price)}</h4>
+            <h4 className="text-2xl font-bold text-red-500">{formatCurrency(finaleprice)}</h4>
+
             {isAuthenticated ? (
-              <button onClick={handleLike} aria-label="Toggle like">
+              <button onClick={handleLike} aria-label="Toggle like" className="ml-auto">
                 {liked ? (
-                  <HiHeart className="h-5 w-5 text-red-500" />
+                  <HiHeart className="h-6 w-6 text-red-500" />
                 ) : (
-                  <HiOutlineHeart className="h-5 w-5" />
+                  <HiOutlineHeart className="h-6 w-6 text-gray-500" />
                 )}
               </button>
             ) : (
-              <div>برای اضافه کردن به علاقه مندی ها اول ثبت نام کنید</div>
+              <div className="ml-auto text-xs text-gray-500">
+                برای اضافه کردن به علاقه‌مندی‌ها ابتدا ثبت نام کنید
+              </div>
             )}
           </div>
-          <div className="flex justify-between">
+
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               onClick={handleAddToCart}
               disabled={isPending || noMore}
-              className="text-liteBule-100 bg-darkBule pointer-events-auto z-10 w-1/2 cursor-pointer rounded-xl px-5 py-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="bg-darkBule w-full rounded-xl px-5 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-1/2"
             >
-              {isPending ? 'در حال افزودن...' : ''}
-              {noMore ? 'موجود در سبد خرید' : 'سفارش'}
+              {isPending ? 'در حال افزودن...' : noMore ? 'موجود در سبد خرید' : 'سفارش'}
             </button>
-            <div className="flex w-fit items-center overflow-hidden rounded-xl border select-none rtl:flex-row-reverse">
+
+            <div className="flex items-center overflow-hidden rounded-xl border select-none rtl:flex-row-reverse">
               <button
                 onClick={dec}
                 disabled={isPending}
@@ -127,7 +127,7 @@ function ProductInfo() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

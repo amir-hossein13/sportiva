@@ -25,7 +25,6 @@ function OverviewContent() {
         icon={<HiOutlineBell className="text-aqua h-5 w-5" />}
       />
 
-      {/* Suggested products */}
       <SuggestedProduct />
     </div>
   );
