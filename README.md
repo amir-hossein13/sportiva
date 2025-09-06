@@ -18,12 +18,12 @@ the backend developer github : https://github.com/usernamesepehr
 
 ## 📂 Tech Stack
 
-**Frontend**
+**Frontend** : https://github.com/amir-hossein13
 - React  
 - react-router-dom
 - TailwindCSS 
 
-**Backend**
+**Backend** : https://github.com/usernamesepehr
 - Laravel  
 - MySQL
 **Deployment**
