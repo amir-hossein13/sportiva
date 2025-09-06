@@ -12,13 +12,13 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 shadow-md backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full bg-white/90 shadow-md backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center">
           <img src="/img/Logo.png" alt="Logo" className="h-10 w-auto" />
         </Link>
 
-        <div className="hidden flex-grow px-4 sm:block md:w-2/5">
+        <div className="hidden max-w-lg flex-1 px-4 sm:block">
           <SearchBar />
         </div>
 
@@ -27,7 +27,7 @@ function Header() {
             <AuthUserIcons />
           ) : (
             <Link to="/login" className="hidden lg:block">
-              <Button className="">ورود / ثبت نام</Button>
+              <Button className=''>ورود / ثبت نام</Button>
             </Link>
           )}
 
@@ -35,8 +35,14 @@ function Header() {
             className="block p-2 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <HiOutlineXMark size={24} /> : <HiBars3 size={24} />}
+            {mobileMenuOpen ? <HiOutlineXMark size={30} /> : <HiBars3 size={30} />}
           </button>
+        </div>
+      </div>
+
+      <div className="hidden border-t border-gray-100 bg-white lg:block">
+        <div className="container mx-auto px-5 py-2">
+          <NavBar />
         </div>
       </div>
 
@@ -51,10 +57,6 @@ function Header() {
           )}
         </div>
       )}
-
-      <div className="hidden lg:block">
-        <NavBar />
-      </div>
     </header>
   );
 }

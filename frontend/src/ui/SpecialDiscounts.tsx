@@ -8,10 +8,10 @@ function SpecialDiscounts() {
     (product) => product.discount && product.discount > 0
   );
 
-  if (isLoading) return <SpinnerMini />;
+  // if (isLoading) return ;
 
   return (
-    <section className="fade-in my-20 sm:container sm:mx-auto">
+    <section className="fade-in my-20 md:container md:mx-auto">
       <div className="discount-banner-gradeint flex flex-col gap-6 rounded-4xl p-6 sm:grid sm:h-[500px] sm:grid-cols-10 sm:p-12 lg:h-[600px] lg:p-20">
         {/* بخش عنوان و تایمر */}
         <div className="flex flex-col items-center justify-center gap-4 text-center sm:col-span-4">
@@ -21,17 +21,21 @@ function SpecialDiscounts() {
         </div>
 
         {/* بخش محصولات */}
-        <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pr-1 sm:col-span-6 sm:pr-0">
-          {productsWithDiscount.length > 0 ? (
-            productsWithDiscount.map((product) => (
-              <div key={product.id} className="w-[220px] flex-shrink-0 snap-center">
-                <ProductItem products={product} />
-              </div>
-            ))
-          ) : (
-            <div className="text-lg text-white">منتظر تخفیف‌های ویژه باشید</div>
-          )}
-        </div>
+        {isLoading ? (
+          <SpinnerMini />
+        ) : (
+          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pr-1 sm:col-span-6 sm:pr-0">
+            {productsWithDiscount.length > 0 ? (
+              productsWithDiscount.map((product) => (
+                <div key={product.id} className="w-[220px] flex-shrink-0 snap-center">
+                  <ProductItem products={product} />
+                </div>
+              ))
+            ) : (
+              <div className="text-lg text-white">منتظر تخفیف‌های ویژه باشید</div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

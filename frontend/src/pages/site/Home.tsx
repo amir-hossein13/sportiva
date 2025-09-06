@@ -1,3 +1,4 @@
+import HeroSlider from '@/ui/HeroSlider';
 import Banner from '../../ui/Banner';
 import Brandes from '../../ui/brandes/Brandes';
 import LandingProduct from '../../ui/LandingProduct';
@@ -7,12 +8,16 @@ import SpecialDiscounts from '../../ui/SpecialDiscounts';
 function Home() {
   return (
     <div className="overflow-hidden">
-      <Banner />
+      <div className=" sm:block lg:hidden">
+        <Banner />
+      </div>
+      <div className="hidden lg:block">
+        <HeroSlider />
+      </div>
       <SpecialDiscounts />
-      {/* <Categories /> */}
-      <LandingProduct/>
-      <LatestPosts/>
-      <Brandes/>
+      <LandingProduct />
+      <LatestPosts />
+      <Brandes />
     </div>
   );
 }

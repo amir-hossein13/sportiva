@@ -23,10 +23,12 @@ function ProductItem({ products }: Props) {
       {/* Image */}
       <Link to={`/product/${id}`} className="flex h-40 w-full items-center justify-center">
         <img
-          src={photo}
+          src={photo || '/img/placeholder.png'}
           alt={name}
-          className="h-full w-auto max-w-full object-contain"
-          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = '/img/placeholder.png';
+          }}
+          className="h-auto w-full max-w-md rounded-lg object-contain"
         />
       </Link>
 

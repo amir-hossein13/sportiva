@@ -9,10 +9,19 @@ import Spinner from '@/ui/Spinner';
 import { useState } from 'react';
 import { useUser } from '../userPanel/user/useUser';
 
+const ImageWithFallback = ({ src, alt }: { src?: string; alt: string }) => (
+  <img
+    src={src || '/img/placeholder.png'}
+    alt={alt}
+    onError={(e) => (e.currentTarget.src = '/img/placeholder.png')}
+    className="h-64 w-full max-w-md rounded-lg object-contain sm:h-80 md:h-96"
+  />
+);
+
 function ProductInfo() {
-  const params = useParams();
-  const productId = Number(params.productId);
-  const { isLoading, singleProduct } = useProductById(productId);
+  const { productId } = useParams<{ productId: string }>();
+  const id = Number(productId);
+  const { isLoading, singleProduct } = useProductById(id);
   const { liked, toggleLikes } = useLikeStore();
   const { count, inc, dec } = useCounter();
   const { addCart, isPending } = useAddCart();
@@ -20,64 +29,69 @@ function ProductInfo() {
   const isAuthenticated = useUser();
 
   if (isLoading) return <Spinner />;
-  //@ts-expect-error idk
+
+  if (!singleProduct) return <div className="text-center text-gray-500">محصولی یافت نشد</div>;
+  //@ts-expect-error test
   const { name, price, discount, finaleprice, photo, description, color, categorys } =
     singleProduct;
 
-  function handleLike() {
-    toggleLikes(productId);
-  }
+  const handleLike = () => toggleLikes(id);
 
-  function handleAddToCart() {
-    addCart({ id: productId, quantity: count });
+  const handleAddToCart = () => {
+    addCart({ id, quantity: count });
     setIsNoMore(true);
-  }
+  };
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap items-center gap-1 text-sm text-gray-500">
-        <h6>دسته بندی</h6>
+    <div className="flex flex-col gap-5 p-4">
+      {/* Breadcrumbs */}
+      <div className="flex items-center gap-1 overflow-x-auto text-sm whitespace-nowrap text-gray-500">
+        <span>دسته بندی</span>
         <HiChevronLeft className="inline" />
-        <h6>{categorys?.[0]?.name}</h6>
+        <span>{categorys?.[0]?.name}</span>
         <HiChevronLeft className="inline" />
-        <h6 className="max-w-xs truncate">{name}</h6>
+        <span className="max-w-xs truncate">{name}</span>
       </div>
 
-      <div className="flex flex-col items-start gap-5 sm:flex-row sm:justify-between">
+      {/* Main Content */}
+      <div className="flex flex-col gap-5 sm:flex-row sm:justify-between">
+        {/* Image */}
         <div className="flex w-full justify-center sm:w-1/2">
-          <img
-            src={photo}
-            alt={name}
-            className="h-auto w-full max-w-md rounded-lg object-contain"
-          />
+          <ImageWithFallback src={photo} alt={name} />
         </div>
 
+        {/* Product Details */}
         <div className="flex w-full flex-col gap-5 sm:w-1/2">
-          <h4 className="line-clamp-2 text-3xl font-bold break-words md:text-4xl">{name}</h4>
+          <h1 className="line-clamp-2 text-2xl font-bold break-words sm:text-3xl md:text-4xl">
+            {name}
+          </h1>
           <p className="line-clamp-4 text-sm text-gray-500">{description}</p>
 
-          <div className="flex flex-col gap-3">
-            <select
-              className="w-full rounded-lg border border-gray-400 p-2 text-right text-gray-500"
-              name="color"
-              id="color"
-              defaultValue=""
-            >
-              <option value="" className="text-gray-300" disabled hidden>
+          {/* Color Selection */}
+          {color && (
+            <select className="w-full rounded-lg border border-gray-400 p-2 text-right text-gray-500">
+              <option value="" disabled hidden>
                 انتخاب رنگ
               </option>
-              {color && <option value={color}>{color}</option>}
+              <option value={color}>{color}</option>
             </select>
-          </div>
+          )}
 
+          {/* Price & Like */}
           <div className="flex items-center gap-3">
             {discount && (
               <span className="rounded-lg bg-red-500 px-2 py-1 text-sm text-white">
                 {discount}%
               </span>
             )}
-            <h4 className="text-2xl text-gray-400 line-through">{formatCurrency(price)}</h4>
-            <h4 className="text-2xl font-bold text-red-500">{formatCurrency(finaleprice)}</h4>
+            {discount && (
+              <span className="text-xl text-gray-400 line-through sm:text-2xl">
+                {formatCurrency(price)}
+              </span>
+            )}
+            <span className="text-xl font-bold text-red-500 sm:text-2xl">
+              {formatCurrency(finaleprice)}
+            </span>
 
             {isAuthenticated ? (
               <button onClick={handleLike} aria-label="Toggle like" className="ml-auto">
@@ -94,7 +108,8 @@ function ProductInfo() {
             )}
           </div>
 
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* Add to Cart & Quantity */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               onClick={handleAddToCart}
               disabled={isPending || noMore}

@@ -7,12 +7,14 @@ const brands = [
 ];
 function Brandes() {
   return (
-    <div className="fade-in my-10 text-center sm:container sm:mx-auto w-full">
+    <div className="fade-in my-10 w-full text-center sm:container sm:mx-auto">
       <Title>برندهای ویژه</Title>
-      <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-5">
+      <div className="flex flex-wrap mt-5 items-center justify-center gap-5 sm:gap-5">
         {brands.map((brand) => (
           <div key={brand.name} className="flex items-center justify-center">
-            <img src={brand.img} alt={brand.name} className="max-h-full max-w-full object-fill" />
+            <div className="flex h-2/3 w-2/3 items-center justify-center">
+              <img src={brand.img} alt={brand.name} className="h-full w-full object-contain" />
+            </div>{' '}
           </div>
         ))}
       </div>

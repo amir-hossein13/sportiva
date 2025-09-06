@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Vazirmatn:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Vazirmatn:wght@100..900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Estedad:wght@100..900&display=swap'); */
+@import url('https://cdn.fontcdn.ir/Font/Persian/Peyda/Peyda.css');
 
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
@@ -11,7 +13,7 @@
 }
 
 @theme {
-    --font-farsi: 'Vazirmatn', sans-serif;
+    --font-farsi: 'Peyda', sans-serif;
     --color-darkBule: #00295f;
     --color-aqua: #176b87;
     --color-liteBule-300: #86B6F6;
@@ -104,7 +106,7 @@
 }
 
 .userPanel-container {
-  @apply container mx-auto ;
+    @apply container mx-auto;
 }
 
 .user-nav {
@@ -120,16 +122,17 @@
 }
 
 .admin-cart-container {
-    @apply col-span-1  rounded-lg bg-white p-5 md:col-span-5
+    @apply col-span-1 rounded-lg bg-white p-5 md:col-span-5
 }
 
 .li-hover {
     @apply rounded-lg hover:text-darkBule hover:bg-aqua transition p-2
 }
 
-.admin-button-cart{
-    @apply px-4 py-2 font-semibold  transition-colors flex w-full items-center gap-2 rounded-md
+.admin-button-cart {
+    @apply px-4 py-2 font-semibold transition-colors flex w-full items-center gap-2 rounded-md
 }
-.admin-button-cart-mini{
-    @apply px-4 py-2 font-semibold  transition-colors flex  items-center gap-2 rounded-md
+
+.admin-button-cart-mini {
+    @apply px-4 py-2 font-semibold transition-colors flex items-center gap-2 rounded-md
 }

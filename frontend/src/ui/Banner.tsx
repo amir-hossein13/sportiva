@@ -1,6 +1,6 @@
 function Banner() {
   return (
-    <section className="container mx-auto my-20">
+    <section className="md:container md:mx-auto my-20 ">
       <div className="relative grid items-center gap-8 rounded-4xl bg-gradient-to-r from-[#176b87] to-[#0d4f63] p-10 sm:grid-cols-2">
         {/* بخش متن */}
         <div className="flex flex-col space-y-6 text-center sm:text-right">
@@ -25,6 +25,7 @@ function Banner() {
           />
         </div>
       </div>
+      
     </section>
   );
 }
