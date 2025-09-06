@@ -57,8 +57,6 @@ function ProductInfo() {
           <p className="line-clamp-4 text-sm text-gray-500">{description}</p>
 
           <div className="flex flex-col gap-3">
-
-
             <select
               className="w-full rounded-lg border border-gray-400 p-2 text-right text-gray-500"
               name="color"
