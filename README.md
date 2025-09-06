@@ -18,12 +18,12 @@ the backend developer github : https://github.com/usernamesepehr
 
 ## 📂 Tech Stack
 
-**Frontend**
+**Frontend** : https://github.com/amir-hossein13
 - React  
 - react-router-dom
 - TailwindCSS 
 
-**Backend**
+**Backend** : https://github.com/usernamesepehr
 - Laravel  
 - MySQL
 **Deployment**
@@ -45,6 +45,7 @@ npm run dev
 ### 2. clone the repository for back-end
 git clone https://github.com/usernamesepehr/sportiva.git 
 cd backend
+cd sportiva
 composer install
 cp .env.example .env
 php artisan key:generate
