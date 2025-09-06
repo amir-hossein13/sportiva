@@ -4,7 +4,6 @@ const tabs = [
   { id: 'overview', label: 'پیشخوان' },
   { id: 'basket', label: 'سبد خرید' },
   { id: 'favorites', label: 'علاقه مندی ها' },
-  { id: 'security', label: 'امنیت' },
 ];
 
 function TabList() {

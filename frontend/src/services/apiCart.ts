@@ -1,38 +1,3 @@
-// import { CartData } from '@/types/Cart';
-// import { apiFetch } from '@/utils/apiFetch';
-
-// export const getCartList = () => {
-//   return apiFetch<CartData>(`/api/cart/list`, {
-//     auth: true,
-//   });
-// };
-// export const getCartItem = (id: number) => {
-//   return apiFetch<CartData>(`/api/cart/${id}`, {
-//     auth: true,
-//   });
-// };
-// export const addNewCartItem = (id: number, quantity: number) => {
-//   return apiFetch<CartData>(`/api/cart/create`, {
-//     method: 'POST',
-//     auth: true,
-//     body: { id, quantity },
-//   });
-// };
-
-// export const deleteCartItem = (id: number) => {
-//   apiFetch<CartData>(`/api/cart/delete/${id}`, {
-//     method: 'DELETE',
-//     auth: true,
-//   });
-// };
-
-// export const updateCartItem = (id: number) => {
-//   return apiFetch<CartData>(`/api/cart/update`, {
-//     method: 'PUT',
-//     auth: true,
-//     body: { id },
-//   });
-// };
 
 import { CartData } from '@/types/Cart';
 import { apiUrl } from './config/config';
@@ -120,9 +85,8 @@ export const updateCartItem = async (id: number, quantity: number): Promise<Cart
     return Promise.reject(new Error('Unauthorized'));
   }
   if (!res.ok) throw new Error('Failed to update item');
-  const text = await res.text();
-  
-  return JSON.parse(text);
+  //@ts-expect-error idk
+  return res
 };
 
 // 🗑️ حذف آیتم از سبد خرید

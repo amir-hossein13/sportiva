@@ -1,9 +1,5 @@
-import {
-  HiOutlineArrowRightStartOnRectangle,
-  HiOutlineBell,
-  HiOutlineHeart,
-  HiOutlineShoppingCart,
-} from 'react-icons/hi2';
+import { HiOutlineArrowRightStartOnRectangle } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 
 function UserPNavbar() {
   return (
@@ -11,19 +7,12 @@ function UserPNavbar() {
       <nav className="userPanel-container flex flex-wrap items-center justify-between p-4">
         <h2 className="text-2xl font-bold sm:text-3xl">پنل کاربری</h2>
 
-        <ul className="mt-3 flex w-full justify-around gap-5 sm:mt-0 sm:w-auto sm:justify-end">
-          <li className="li-hover">
-            <HiOutlineArrowRightStartOnRectangle className="h-6 w-6 sm:h-7 sm:w-7" />
-          </li>
-          <li className="li-hover">
-            <HiOutlineBell className="h-6 w-6 sm:h-7 sm:w-7" />
-          </li>
-          <li className="li-hover">
-            <HiOutlineShoppingCart className="h-6 w-6 sm:h-7 sm:w-7" />
-          </li>
-          <li className="li-hover">
-            <HiOutlineHeart className="h-6 w-6 sm:h-7 sm:w-7" />
-          </li>
+        <ul className="mt-3 flex justify-start sm:mt-0 sm:w-auto sm:justify-end">
+          <Link to="/">
+            <li className="li-hover">
+              <HiOutlineArrowRightStartOnRectangle className="h-6 w-6 sm:h-7 sm:w-7" />
+            </li>
+          </Link>
         </ul>
       </nav>
     </header>
