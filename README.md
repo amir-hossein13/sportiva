@@ -45,6 +45,7 @@ npm run dev
 ### 2. clone the repository for back-end
 git clone https://github.com/usernamesepehr/sportiva.git 
 cd backend
+cd sportiva
 composer install
 cp .env.example .env
 php artisan key:generate
