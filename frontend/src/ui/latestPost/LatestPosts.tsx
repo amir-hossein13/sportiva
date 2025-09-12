@@ -35,7 +35,7 @@ const posts = [
 
 function LatestPosts() {
   return (
-    <section className="font-farsi fade-in my-10 md:container md:mx-auto text-right ">
+    <section className="font-farsi fade-in my-10 sm:w-[90%] md:container md:mx-auto text-right ">
       <h2 className="mb-10 text-center text-2xl  text-[#002A5C] sm:text-3xl">
         آخرین پست ها
       </h2>

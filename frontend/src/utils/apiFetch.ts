@@ -37,7 +37,7 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
 
   if (res.status === 401) {
     removeToken();
-    window.location.href = '/login';
+    window.location.replace('/login')
     return Promise.reject(new Error('Unauthorized'));
   }
 
